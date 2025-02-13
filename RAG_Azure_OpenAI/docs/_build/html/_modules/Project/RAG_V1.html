@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project.RAG_V1 &#8212; RAG_Azure_OpenAI_api  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/Project/RAG_V1';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">RAG_Azure_OpenAI_api  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules.html">
+    Azure OpenAI
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules.html">
+    Azure OpenAI
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Project.RAG_V1</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for Project.RAG_V1</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;This module initializes and runs the Retrieval-Augmented Generation (RAG) system.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">from</span> <span class="nn">azure.identity</span> <span class="kn">import</span> <span class="n">DefaultAzureCredential</span>
+<span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">AzureOpenAIEmbeddings</span>
+<span class="kn">from</span> <span class="nn">langchain_community.vectorstores</span> <span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">AzureChatOpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">from</span> <span class="nn">langchain.chains</span> <span class="kn">import</span> <span class="n">RetrievalQA</span>
+<span class="kn">from</span> <span class="nn">langchain.memory</span> <span class="kn">import</span> <span class="n">ConversationBufferMemory</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">render_template_string</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">langchain_community.callbacks.manager</span> <span class="kn">import</span> <span class="n">get_openai_callback</span>
+
+<div class="viewcode-block" id="set_openai_credentials">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.set_openai_credentials">[docs]</a>
+<span class="k">def</span> <span class="nf">set_openai_credentials</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set OpenAI API credentials.</span>
+
+<span class="sd">    This function initializes the OpenAI API credentials using Azure authentication.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">credential</span> <span class="o">=</span> <span class="n">DefaultAzureCredential</span><span class="p">(</span><span class="n">exclude_managed_identity_credential</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azuread&#39;</span>
+    <span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s2">&quot;2024-02-01&quot;</span>
+    <span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;https://obs-eu-swe-openai.openai.azure.com/&quot;</span>
+    <span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_KEY&quot;</span><span class="p">]</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">api_key</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AZURE_OPENAI_ENDPOINT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">api_base</span></div>
+
+
+<div class="viewcode-block" id="initialize_embedding">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.initialize_embedding">[docs]</a>
+<span class="k">def</span> <span class="nf">initialize_embedding</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the embedding model using AzureOpenAIEmbeddings.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        AzureOpenAIEmbeddings: An instance of the AzureOpenAIEmbeddings class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize AzureOpenAIEmbeddings with specific azure_deployment and openai_api_version</span>
+    <span class="k">return</span> <span class="n">AzureOpenAIEmbeddings</span><span class="p">(</span>
+        <span class="n">azure_deployment</span><span class="o">=</span><span class="s2">&quot;text-embedding-ada-002&quot;</span><span class="p">,</span>
+        <span class="n">openai_api_version</span><span class="o">=</span><span class="n">openai</span><span class="o">.</span><span class="n">api_version</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="initialize_document_store">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.initialize_document_store">[docs]</a>
+<span class="k">def</span> <span class="nf">initialize_document_store</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">persist_directory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the document store using the embedding and persist directory.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        embedding (AzureOpenAIEmbeddings): An instance of the AzureOpenAIEmbeddings class.</span>
+<span class="sd">        persist_directory (str): The directory where the document store will persist its data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Chroma: An instance of the Chroma document store.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize the document store using the embedding and persist directory</span>
+    <span class="k">return</span> <span class="n">Chroma</span><span class="p">(</span>
+        <span class="n">embedding_function</span><span class="o">=</span><span class="n">embedding</span><span class="p">,</span>  <span class="c1"># The embedding function to use</span>
+        <span class="n">persist_directory</span><span class="o">=</span><span class="n">persist_directory</span>  <span class="c1"># The directory to persist the data to</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="initialize_retriever">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.initialize_retriever">[docs]</a>
+<span class="k">def</span> <span class="nf">initialize_retriever</span><span class="p">(</span><span class="n">document_store</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the retriever using the document store and the query results number.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        document_store (Chroma): An instance of the Chroma document store.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Retriever: An instance of the retriever.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize the retriever using the document store and the query results number</span>
+    <span class="k">return</span> <span class="n">document_store</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span>
+        <span class="n">return_source_documents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">search_type</span><span class="o">=</span><span class="s2">&quot;mmr&quot;</span><span class="p">,</span>
+        <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;fetch_k&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="initialize_llm">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.initialize_llm">[docs]</a>
+<span class="k">def</span> <span class="nf">initialize_llm</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the AzureChatOpenAI model with the specified parameters.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        AzureChatOpenAI: An instance of the AzureChatOpenAI model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">AzureChatOpenAI</span><span class="p">(</span>
+        <span class="n">azure_deployment</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+        <span class="n">openai_api_version</span><span class="o">=</span><span class="n">openai</span><span class="o">.</span><span class="n">api_version</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="initialize_prompt_template">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.initialize_prompt_template">[docs]</a>
+<span class="k">def</span> <span class="nf">initialize_prompt_template</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">PromptTemplate</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the prompt template used for generating the QA chain prompt.</span>
+
+<span class="sd">    The prompt template includes instructions for the assistant to follow,</span>
+<span class="sd">    as well as a placeholder for the context and chat history.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        PromptTemplate: An instance of the PromptTemplate object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># The prompt template includes instructions for the assistant to follow,</span>
+    <span class="c1"># as well as a placeholder for the context and chat history.</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; You are a technical assistant.</span>
+<span class="s2">    If you don&#39;t know the answer, just say that you don&#39;t know, don&#39;t try to make up an answer. </span>
+<span class="s2">    Keep the answer as concise as possible. Say &quot;thanks for asking!&quot; or &quot;thank you!&quot; or something similar at the end of the answer.</span>
+<span class="s2">    Answer step by step</span>
+<span class="s2">    Use the following context (delimited by &lt;ctx&gt;&lt;/ctx&gt;) and the chat history (delimited by &lt;hs&gt;&lt;/hs&gt;) to answer the question. :</span>
+<span class="s2">    ------</span>
+<span class="s2">    &lt;ctx&gt;</span>
+<span class="s2">    </span><span class="si">{context}</span>
+<span class="s2">    &lt;/ctx&gt;</span>
+<span class="s2">    ------</span>
+<span class="s2">    &lt;hs&gt;</span>
+<span class="s2">    </span><span class="si">{history}</span>
+<span class="s2">    &lt;/hs&gt;</span>
+<span class="s2">    ------</span>
+<span class="s2">    </span><span class="si">{question}</span>
+<span class="s2">    Answer:</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+        <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">,</span> <span class="s2">&quot;context&quot;</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">],</span>
+        <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="initialize_memory">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.initialize_memory">[docs]</a>
+<span class="k">def</span> <span class="nf">initialize_memory</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ConversationBufferMemory</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the memory object for storing the conversation history.</span>
+
+<span class="sd">    The memory object is a ConversationBufferMemory object, which stores the</span>
+<span class="sd">    conversation history in memory. The memory_key is set to &quot;history&quot;, which</span>
+<span class="sd">    is the key used to store the conversation history in the memory object.</span>
+<span class="sd">    The input_key is set to &quot;question&quot;, which is the key used to store the</span>
+<span class="sd">    question in the memory object.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ConversationBufferMemory: The initialized memory object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ConversationBufferMemory</span><span class="p">(</span>
+        <span class="n">memory_key</span><span class="o">=</span><span class="s2">&quot;history&quot;</span><span class="p">,</span>  <span class="c1"># The key used to store the conversation history</span>
+        <span class="n">input_key</span><span class="o">=</span><span class="s2">&quot;question&quot;</span>   <span class="c1"># The key used to store the question</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="initialize_qa_chain">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.initialize_qa_chain">[docs]</a>
+<span class="k">def</span> <span class="nf">initialize_qa_chain</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="n">prompt_template</span><span class="p">,</span> <span class="n">memory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the QA chain.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        llm (AzureChatOpenAI): The language model used for generating answers.</span>
+<span class="sd">        retriever (ElasticsearchRetriever): The retriever used for retrieving relevant documents.</span>
+<span class="sd">        prompt_template (PromptTemplate): The prompt template used for generating the QA chain prompt.</span>
+<span class="sd">        memory (ConversationBufferMemory): The memory used for storing the conversation history.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        RetrievalQA: The initialized QA chain.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize the QA chain</span>
+    <span class="k">return</span> <span class="n">RetrievalQA</span><span class="o">.</span><span class="n">from_chain_type</span><span class="p">(</span>
+        <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+        <span class="n">chain_type</span><span class="o">=</span><span class="s1">&#39;stuff&#39;</span><span class="p">,</span>
+        <span class="n">retriever</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">chain_type_kwargs</span><span class="o">=</span><span class="p">{</span>
+            <span class="c1"># Set verbose to False to disable verbose logging</span>
+            <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="c1"># Set the prompt template</span>
+            <span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="n">prompt_template</span><span class="p">,</span>
+            <span class="c1"># Set the memory to store the conversation history</span>
+            <span class="s2">&quot;memory&quot;</span><span class="p">:</span> <span class="n">memory</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_template_path">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.get_template_path">[docs]</a>
+<span class="k">def</span> <span class="nf">get_template_path</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the absolute path of the template.html file.</span>
+
+<span class="sd">    This function gets the absolute path of the current file and then builds the</span>
+<span class="sd">    absolute path of the template.html file. It returns the path of the template</span>
+<span class="sd">    file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The absolute path of the template.html file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get the absolute path of the current file</span>
+    <span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="c1"># Build the absolute path of the template.html file</span>
+    <span class="n">template_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="s1">&#39;RAGchatTemplate.html&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">template_path</span></div>
+
+
+<div class="viewcode-block" id="create_flask_app">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.create_flask_app">[docs]</a>
+<span class="k">def</span> <span class="nf">create_flask_app</span><span class="p">(</span><span class="n">qa_chain</span><span class="p">,</span> <span class="n">memory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create and configure a Flask app for the chatbot.</span>
+<span class="sd">    </span>
+<span class="sd">    This function creates a Flask app, sets up routes for handling user requests, and returns the configured app.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        qa_chain (RetrievalQA): The RetrievalQA object for question answering.</span>
+<span class="sd">        memory (ConversationBufferMemory): The memory object for storing conversation history.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Flask: The configured Flask application.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    
+    <span class="n">store</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;chat_history&quot;</span><span class="p">:[]}</span>
+
+    <span class="c1"># Use the get_template_path function to get the absolute path of the template.html file</span>
+    <span class="n">template_path</span> <span class="o">=</span> <span class="n">get_template_path</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle GET and POST requests to the root URL.</span>
+
+<span class="sd">        This function handles GET and POST requests to the root URL.</span>
+<span class="sd">        If the request is a POST request and the &#39;question&#39; key is present in the request form,</span>
+<span class="sd">        it appends a new user message to the chat history, invokes the QA chain with the question,</span>
+<span class="sd">        and appends the result to the chat history along with the runtime and cost.</span>
+<span class="sd">        It then renders the template with the chat history.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The rendered template with the chat history.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Handle GET and POST requests</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span> <span class="ow">and</span> <span class="s1">&#39;question&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">:</span>
+            <span class="c1"># Get the callback for OpenAI API usage</span>
+            <span class="k">with</span> <span class="n">get_openai_callback</span><span class="p">()</span> <span class="k">as</span> <span class="n">cb</span><span class="p">:</span>
+                <span class="c1"># Start the timer</span>
+                <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                <span class="c1"># Get the question from the request form</span>
+                <span class="n">question</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span>
+                <span class="c1"># Append the user message to the chat history</span>
+                <span class="n">store</span><span class="p">[</span><span class="s2">&quot;chat_history&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">})</span>
+                <span class="c1"># Invoke the QA chain with the question</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">qa_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">})</span>
+                <span class="c1"># Stop the timer</span>
+                <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                <span class="c1"># Calculate the runtime</span>
+                <span class="n">runtime</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+                <span class="c1"># Calculate the cost</span>
+                <span class="n">cost</span> <span class="o">=</span> <span class="n">cb</span><span class="o">.</span><span class="n">total_cost</span> 
+                <span class="c1"># Append the result to the chat history along with the runtime and cost</span>
+                <span class="n">store</span><span class="p">[</span><span class="s2">&quot;chat_history&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;bot&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">],</span> 
+                                    <span class="s2">&quot;runtime&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">runtime</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">,</span> 
+                                    <span class="s2">&quot;cost&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">cost</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>
+        <span class="c1"># Render the template with the chat history</span>
+        <span class="k">return</span> <span class="n">render_template_string</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">chat</span><span class="o">=</span><span class="n">store</span><span class="p">[</span><span class="s2">&quot;chat_history&quot;</span><span class="p">])</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/clear&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clear the chat history and memory.</span>
+
+<span class="sd">        This function clears the chat history and memory by setting the chat_history</span>
+<span class="sd">        list to an empty list and calling the clear() method on the memory object.</span>
+<span class="sd">        It returns a JSON response with the &#39;success&#39; key set to True.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            JSON: A JSON object with the &#39;success&#39; key set to True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Clear the chat history</span>
+        <span class="n">store</span><span class="p">[</span><span class="s2">&quot;chat_history&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># Clear the memory</span>
+        <span class="n">memory</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        
+        <span class="c1"># Return a success response</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">success</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/shutdown&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Shut down the application gracefully by exiting the program.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Exit the program</span>
+
+    <span class="k">return</span> <span class="n">app</span></div>
+
+
+<div class="viewcode-block" id="run_app">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.run_app">[docs]</a>
+<span class="k">def</span> <span class="nf">run_app</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run the Flask application on all interfaces of the host machine, listening on port 5000.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        app (Flask): The Flask application to run.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Run the Flask application on all interfaces of the host machine</span>
+    <span class="c1"># listening on port 5000</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../Project.html#Project.RAG_V1.main">[docs]</a>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">persist_directory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set up the OpenAI credentials, initialize the embedding, document store, retriever, LLM, prompt template, memory, and QA chain. Then, create a Flask app and run it in a separate thread.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        persist_directory (str): The directory where the document store will persist its data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Set up the OpenAI credentials</span>
+    <span class="n">set_openai_credentials</span><span class="p">()</span>
+
+    <span class="c1"># Initialize the embedding</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">initialize_embedding</span><span class="p">()</span>
+
+    <span class="c1"># Initialize the document store</span>
+    <span class="n">document_store</span> <span class="o">=</span> <span class="n">initialize_document_store</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">persist_directory</span><span class="p">)</span>
+
+    <span class="c1"># Initialize the retriever</span>
+    <span class="n">retriever</span> <span class="o">=</span> <span class="n">initialize_retriever</span><span class="p">(</span><span class="n">document_store</span><span class="p">)</span>
+
+    <span class="c1"># Initialize the LLM</span>
+    <span class="n">llm</span> <span class="o">=</span> <span class="n">initialize_llm</span><span class="p">()</span>
+
+    <span class="c1"># Initialize the prompt template</span>
+    <span class="n">prompt_template</span> <span class="o">=</span> <span class="n">initialize_prompt_template</span><span class="p">()</span>
+
+    <span class="c1"># Initialize the memory</span>
+    <span class="n">memory</span> <span class="o">=</span> <span class="n">initialize_memory</span><span class="p">()</span>
+
+    <span class="c1"># Initialize the QA chain</span>
+    <span class="n">qa_chain</span> <span class="o">=</span> <span class="n">initialize_qa_chain</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="n">prompt_template</span><span class="p">,</span> <span class="n">memory</span><span class="p">)</span>
+
+    <span class="c1"># Create a Flask app and run it in a separate thread</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">create_flask_app</span><span class="p">(</span><span class="n">qa_chain</span><span class="p">,</span> <span class="n">memory</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">run_app</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">app</span><span class="p">,))</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div>
+
+
+<span class="c1">##########</span>
+<span class="c1">#  main  #</span>
+<span class="c1">##########</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Use python RAG_V1.py &lt;persist_directory&gt;&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">persist_directory</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">persist_directory</span><span class="p">)</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Maxime Bouet.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

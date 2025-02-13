@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>project.Run_Anonymise &#8212; Anonymisation Project 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for project.Run_Anonymise</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;This module contains the code for the anonymisation process.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">AnonymiseWithTransformers</span> <span class="kn">import</span> <span class="n">anonymise_with_transformer</span>
+<span class="kn">from</span> <span class="nn">AnonymiseWithREGEX</span> <span class="kn">import</span> <span class="n">anonymize_text</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1">##########################</span>
+<span class="c1">#  Function</span>
+<span class="c1">##########################</span>
+<div class="viewcode-block" id="get_name_column">
+<a class="viewcode-back" href="../../project.html#project.Run_Anonymise.get_name_column">[docs]</a>
+<span class="k">def</span> <span class="nf">get_name_column</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">name_column</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the unique values in the specified column of the dataframe, clean and split them, and return as a list of lists.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        df (DataFrame): The pandas DataFrame containing the data.</span>
+<span class="sd">        name_column (str): The name of the column in the DataFrame.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        list: A list of lists containing the cleaned and split unique values from the specified column.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># parcoure the dataframe column &quot;société&quot; and build a list of all the index</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+        <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+        
+    <span class="c1"># remove duplicates</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+
+    <span class="c1"># remove nan values</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">index</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;nan&#39;</span><span class="p">]</span>
+
+    <span class="c1"># remove empty strings</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">index</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+
+    <span class="c1"># split the index names if they contain a space or a dash but keep the original name</span>
+    <span class="n">index_split</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+            <span class="n">index_split</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+            <span class="n">index_split</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span>
+        
+        <span class="n">index_split</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1"># in companies_split, remove words &quot;du&quot;, &quot;-&quot;, ...</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">index_split</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;du&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;le&quot;</span><span class="p">,</span> <span class="s2">&quot;la&quot;</span><span class="p">,</span> <span class="s2">&quot;les&quot;</span><span class="p">,</span> <span class="s2">&quot;de&quot;</span><span class="p">,</span> <span class="s2">&quot;des&quot;</span><span class="p">,</span> <span class="s2">&quot;et&quot;</span><span class="p">,</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span> <span class="s2">&quot;SARL&quot;</span><span class="p">,</span> <span class="s2">&quot;La&quot;</span><span class="p">,</span> <span class="s2">&quot;Le&quot;</span><span class="p">,</span> <span class="s2">&quot;Les&quot;</span><span class="p">,</span> <span class="s2">&quot;33&quot;</span><span class="p">,</span> <span class="s2">&quot;2024&quot;</span><span class="p">,</span> <span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="s2">&quot;2020&quot;</span><span class="p">,</span> <span class="s2">&quot;SI&quot;</span><span class="p">,</span> <span class="s2">&quot;GA&quot;</span><span class="p">,</span> <span class="s2">&quot;CMA&quot;</span><span class="p">,</span> <span class="s2">&quot;CGM&quot;</span><span class="p">,</span> <span class="s2">&quot;GRT&quot;</span><span class="p">,</span> <span class="s2">&quot;GAZ&quot;</span><span class="p">,</span> <span class="s2">&quot;CD91&quot;</span><span class="p">,</span> <span class="s2">&quot;EAU&quot;</span><span class="p">,</span> <span class="s2">&quot;RMC&quot;</span><span class="p">,</span> <span class="s2">&quot;IT&quot;</span><span class="p">,</span> <span class="s2">&quot;NSOC&quot;</span><span class="p">]:</span>
+                <span class="n">i</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    
+    <span class="c1"># remove duplicates in index_split</span>
+    <span class="n">index_split</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">index_split</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">index_split</span></div>
+
+
+<div class="viewcode-block" id="anonymise_column">
+<a class="viewcode-back" href="../../project.html#project.Run_Anonymise.anonymise_column">[docs]</a>
+<span class="k">def</span> <span class="nf">anonymise_column</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">companies_split</span><span class="p">,</span> <span class="n">name_column</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Anonymise the given column in the dataframe by replacing potential personal information with placeholders.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        df (DataFrame): The pandas DataFrame containing the data.</span>
+<span class="sd">        companies_split (list): A list of lists containing the cleaned and split unique values from the specified column.</span>
+<span class="sd">        name_column (str): The name of the column in the DataFrame.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        DataFrame: The DataFrame with the anonymized column.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># In the column &quot;Element de configuration&quot;</span>
+    <span class="c1"># Anonymize URLs</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b[\w.-]+\.[a-zA-Z]{2,}\b&#39;</span><span class="p">,</span> <span class="s1">&#39;[URL]&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+    <span class="c1"># Anonymize mac addresses</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([0-9A-Fa-f]</span><span class="si">{2}</span><span class="s1">[:-])</span><span class="si">{5}</span><span class="s1">([0-9A-Fa-f]</span><span class="si">{2}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="s1">&#39;[MAC_ADDRESS]&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="c1"># Anonymize email addresses</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b[\w.-]+\s?@\s?[\w.-]+\.[a-zA-Z]{2,}\b&#39;</span><span class="p">,</span> <span class="s1">&#39;[EMAIL_ADDRESS]&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="c1"># Anonymize phone numbers</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;0[1-9]\.\d</span><span class="si">{2}</span><span class="s1">\.\d</span><span class="si">{2}</span><span class="s1">\.\d</span><span class="si">{2}</span><span class="s1">\.\d</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;[PHONE_NUMBER]&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[0-9]</span><span class="si">{2}</span><span class="s1">\s?[0-9]</span><span class="si">{2}</span><span class="s1">\s?[0-9]</span><span class="si">{2}</span><span class="s1">\s?[0-9]</span><span class="si">{2}</span><span class="s1">\s?[0-9]</span><span class="si">{2}</span><span class="s1">\s?&#39;</span><span class="p">,</span> <span class="s1">&#39;[PHONE_NUMBER]&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\+\d</span><span class="si">{2}</span><span class="s1">\s\d{1,2}\s\d</span><span class="si">{2}</span><span class="s1">\s\d</span><span class="si">{2}</span><span class="s1">\s\d</span><span class="si">{2}</span><span class="s1">\s\d</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;[PHONE_NUMBER]&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b\d{2,3}[-.\s]??\d</span><span class="si">{3}</span><span class="s1">[-.\s]??\d</span><span class="si">{4}</span><span class="s1">\b&#39;</span><span class="p">,</span> <span class="s1">&#39;[PHONE_NUMBER]&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="c1"># Anonymize IPs</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b(?:\d{1,3}\.)</span><span class="si">{3}</span><span class="s1">\d{1,3}\b&#39;</span><span class="p">,</span> <span class="s1">&#39;[IP]&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+
+    <span class="c1"># Anonymize text</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">anonymize_text</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Anonymize companies</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">companies_split</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">company</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">name_column</span><span class="p">]:</span>
+                    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">name_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">name_column</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s2">&quot;[ORGANIZATION]&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+                    
+<div class="viewcode-block" id="anonymise_description">
+<a class="viewcode-back" href="../../project.html#project.Run_Anonymise.anonymise_description">[docs]</a>
+<span class="k">def</span> <span class="nf">anonymise_description</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Anonymize the names in the &quot;Description&quot; column of the dataframe.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        df (DataFrame): The pandas DataFrame containing the data.</span>
+<span class="sd">        names (list): A list of lists containing the cleaned and split unique values from the specified column.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        DataFrame: The DataFrame with the anonymized &quot;Description&quot; column.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Anonymize the names in the &quot;Description&quot; column</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">description</span><span class="p">:</span>
+                    <span class="c1"># Replace the name in the description by [PERSON]</span>
+                    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;Description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s2">&quot;[PERSON]&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../project.html#project.Run_Anonymise.main">[docs]</a>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">filenameCSV</span><span class="p">,</span> <span class="n">filenameXLSX</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Anonymise tickets.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        filenameCSV (str): The path of the CSV file to anonymize.</span>
+<span class="sd">        filenameXLSX (str): The path of the Excel file to save the anonymized data.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># read the csv file</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;### Openning the csv file and save it as dataframe &#39;df&#39;... ###&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filenameCSV</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;ISO-8859-1&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">&#39;skip&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1"># check that the column name Description is in the dataframe</span>
+    <span class="k">if</span> <span class="s1">&#39;Description&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file does not contain the required columns.&#39;</span><span class="p">)</span>
+        <span class="k">return</span>
+    
+    <span class="c1"># Anonymize the &#39;Description&#39; column using the anonymize_with_transformer function</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;### Anonymize the &#39;Description&#39; column using the anonymize_with_transformer function... ###&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">anonymise_with_transformer</span><span class="p">(</span><span class="n">anonymize_text</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># Get the split names from the &quot;Société&quot; column</span>
+    <span class="n">companies_split</span> <span class="o">=</span> <span class="n">get_name_column</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;Société&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Anonymize the columns &#39;Titre&#39;, &#39;Élément de configuration&#39;, and &#39;Branche&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;### Anonymize the columns &#39;Titre&#39;, &#39;Élément de configuration&#39;, and &#39;Branche&#39;... ###&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Titre&#39;</span><span class="p">,</span> <span class="s1">&#39;Élément de configuration&#39;</span><span class="p">,</span> <span class="s1">&#39;Branche&#39;</span><span class="p">]:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">anonymise_column</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">companies_split</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span>
+
+    <span class="c1"># Get the split names from the &quot;Ouvert par&quot; column</span>
+    <span class="n">names_split</span> <span class="o">=</span> <span class="n">get_name_column</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;Ouvert par&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Anonymize the names in the &quot;Description&quot; column</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;### Anonymize the names in the &#39;Description&#39; column... ###&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">anonymise_description</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">names_split</span><span class="p">)</span>
+    
+    <span class="c1"># Clear the columns &#39;Site&#39;, &#39;Société&#39;, &#39;Lien CMDB&#39;, &#39;Ouvert par&#39;, &#39;Solliciteur&#39;, and &#39;Affecté à&#39; </span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Site&#39;</span><span class="p">,</span> <span class="s1">&#39;Société&#39;</span><span class="p">,</span> <span class="s1">&#39;Lien CMDB&#39;</span><span class="p">,</span> <span class="s1">&#39;Ouvert par&#39;</span><span class="p">,</span> <span class="s1">&#39;Solliciteur&#39;</span><span class="p">,</span> <span class="s1">&#39;Affecté à&#39;</span><span class="p">]:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    
+    <span class="c1"># Export the DataFrame to an Excel file</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;### Export the DataFrame to an Excel file... ###&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Get the path of the CSV file and add the filenameXLSX to it</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">filenameCSV</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">filenameXLSX</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">filenameXLSX</span>
+    
+    <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">filenameXLSX</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># Export the DataFrame to an Excel file</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># get the parameters from the command line</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">filenameXLSX</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">filenameCSV</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Usage: python Run_Anonymise.py &lt;filenameXLSX&gt; &lt;filenameCSV&gt;&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">filenameCSV</span><span class="p">,</span> <span class="n">filenameXLSX</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Anonymisation Project</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">AnonymisationProject</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Maxime BOuet.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project.Script package &#8212; RecupKnowledgeBase  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Project.Script';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Project package" href="Project.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">RecupKnowledgeBase  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="modules.html">
+    RecupKnowledgeBase
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="modules.html">
+    RecupKnowledgeBase
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Project.html">Project package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Project.Script package</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">RecupKnowledgeBase</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="Project.html" class="nav-link">Project package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Project.Scri...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="project-script-package">
+<h1>Project.Script package<a class="headerlink" href="#project-script-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-Project.Script.RecupKbFortinet">
+<span id="project-script-recupkbfortinet-module"></span><h2>Project.Script.RecupKbFortinet module<a class="headerlink" href="#module-Project.Script.RecupKbFortinet" title="Link to this heading">#</a></h2>
+<p>This script retrieves the content of Fortinet’s knowledge base and saves it to a file.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbFortinet.curlAllArticles">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbFortinet.</span></span><span class="sig-name descname"><span class="pre">curlAllArticles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbFortinet.html#curlAllArticles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbFortinet.curlAllArticles" title="Link to this definition">#</a></dt>
+<dd><p>Download the content of each URL from ‘Temp/SecondURLs.txt’ and saves it to a folder named after the article title.</p>
+<p>Parameters:
+None</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbFortinet.generateAllArticleUrls">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbFortinet.</span></span><span class="sig-name descname"><span class="pre">generateAllArticleUrls</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbFortinet.html#generateAllArticleUrls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbFortinet.generateAllArticleUrls" title="Link to this definition">#</a></dt>
+<dd><p>Generate all the article URLs for the Fortinet community website.</p>
+<p>This function reads the URLs from the ‘Temp/FirstURLs.txt’ file, retrieves the page source for each URL using the ‘selenium’ function,
+and extracts the article URLs from the page source. The extracted URLs are saved in the ‘FirstUrls’ list.</p>
+<p>The function then removes any duplicate URLs from the ‘FirstUrls’ list and saves the remaining URLs in the ‘Temp/SecondURLs.txt’ file,
+each URL followed by a newline character.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>None</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbFortinet.generateAllPagesUrls">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbFortinet.</span></span><span class="sig-name descname"><span class="pre">generateAllPagesUrls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbFortinet.html#generateAllPagesUrls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbFortinet.generateAllPagesUrls" title="Link to this definition">#</a></dt>
+<dd><p>Generate all the URLs for the pages related to a specific knowledge base on the Fortinet community website.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url (str): The URL of the main page of the knowledge base.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+<p>This function first saves the HTML content of the main page of the knowledge base to a file named ‘Temp/knowledge_base.html’.
+It then reads the content of the file and extracts the URLs of the individual pages using regular expressions.
+The extracted URLs are stored in the list ‘FirstUrls’.</p>
+<p>Next, the function iterates over each URL in ‘FirstUrls’ and retrieves the page source using the ‘selenium’ function.
+The page source is saved to a file named ‘Temp/knowledge.html’.
+The function then extracts the maximum number of pages from the page source using regular expressions and stores it in ‘max_pages’.
+If ‘max_pages’ is greater than 0, the function generates additional URLs for each page number from 2 to ‘max_pages’ and stores them in the list ‘tempsURLs’.</p>
+<p>Finally, the function appends all the URLs in ‘FirstUrls’ and ‘tempsURLs’ to a file named ‘Temp/FirstURLs.txt’.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbFortinet.main">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbFortinet.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbFortinet.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbFortinet.main" title="Link to this definition">#</a></dt>
+<dd><p>Execute the entire process of generating all pages URLs, generating all article URLs, and scraping all articles for the Fortinet community website.</p>
+<p>This function performs the following steps:
+1. Sets the initial URL to ‘<a class="reference external" href="https://community.fortinet.com/t5/Knowledge-Base/ct-p/knowledgebase">https://community.fortinet.com/t5/Knowledge-Base/ct-p/knowledgebase</a>’.
+2. Calls the ‘generateAllPagesUrls’ function to generate all the pages URLs.
+3. Prints ‘Getting all URLs …’ to indicate the process of generating URLs.
+4. Calls the ‘generateAllArticleUrls’ function to generate all the article URLs.
+5. Prints ‘Scraping all URLs …’ to indicate the process of scraping URLs.
+6. Calls the ‘curlAllArticles’ function to scrape all the articles.
+7. Removes all temporary files ‘Temp/knowledge.html’, ‘Temp/FirstURLs.txt’, Temp/SecondURLs.txt’, and ‘Temp/knowledge_base.html’.</p>
+<p>This function does not take any parameters and does not return any values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbFortinet.save_knowledge_base">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbFortinet.</span></span><span class="sig-name descname"><span class="pre">save_knowledge_base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/Project/Script/RecupKbFortinet.html#save_knowledge_base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbFortinet.save_knowledge_base" title="Link to this definition">#</a></dt>
+<dd><p>Save the content of a webpage to a file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url (str): The URL of the webpage to save.
+file_name (str): The name of the file to save the content to.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+<dt>Raises:</dt><dd><p>None</p>
+</dd>
+</dl>
+<p>This function sends a GET request to the specified URL and retrieves the HTML content of the webpage.
+It then uses BeautifulSoup to parse the HTML and prettify it. The prettified HTML is then written to the specified file.</p>
+<dl class="simple">
+<dt>Example usage:</dt><dd><p>save_knowledge_base(’<a class="reference external" href="https://www.example.com">https://www.example.com</a>’, ‘knowledge_base.html’)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbFortinet.selenium">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbFortinet.</span></span><span class="sig-name descname"><span class="pre">selenium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbFortinet.html#selenium"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbFortinet.selenium" title="Link to this definition">#</a></dt>
+<dd><p>Open a Firefox browser in headless mode and retrieves the page source of the specified URL.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url (str): The URL of the webpage to load.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The page source of the loaded webpage.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-Project.Script.RecupKbNETSKOPE">
+<span id="project-script-recupkbnetskope-module"></span><h2>Project.Script.RecupKbNETSKOPE module<a class="headerlink" href="#module-Project.Script.RecupKbNETSKOPE" title="Link to this heading">#</a></h2>
+<p>This module retrieves the content of NetSkope’s knowledge base and saves it to a file.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbNETSKOPE.extract_urls">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbNETSKOPE.</span></span><span class="sig-name descname"><span class="pre">extract_urls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbNETSKOPE.html#extract_urls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbNETSKOPE.extract_urls" title="Link to this definition">#</a></dt>
+<dd><p>Extract the URL from an HTML element if it exists.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>element (bs4.element.Tag): The HTML element to extract the URL from.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str or None: The extracted URL if it exists, None otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbNETSKOPE.generateAllPagesUrls">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbNETSKOPE.</span></span><span class="sig-name descname"><span class="pre">generateAllPagesUrls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbNETSKOPE.html#generateAllPagesUrls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbNETSKOPE.generateAllPagesUrls" title="Link to this definition">#</a></dt>
+<dd><p>Extract URLs from the given HTML file and writes them to an output file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file (str): The path to the HTML file.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbNETSKOPE.getContent">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbNETSKOPE.</span></span><span class="sig-name descname"><span class="pre">getContent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/Project/Script/RecupKbNETSKOPE.html#getContent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbNETSKOPE.getContent" title="Link to this definition">#</a></dt>
+<dd><p>Read URLs from the given file and saves their content to the local file system.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file_path (str): The path to the file containing the URLs.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbNETSKOPE.main">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbNETSKOPE.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbNETSKOPE.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbNETSKOPE.main" title="Link to this definition">#</a></dt>
+<dd><p>Execute the entire process of saving the main page’s content to a local file, generating all the pages URLs, and scraping all pages’ content.</p>
+<p>This function performs the following steps:
+1. Saves the HTML content of the main page to a file named ‘Temp/knowledge.html’.
+2. Generates all the pages URLs using the ‘generateAllPagesUrls’ function.
+3. Scrapes all pages’ content using the ‘getContent’ function.
+4. Removes all temporary files.</p>
+<p>This function does not take any parameters and does not return any values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbNETSKOPE.save_page_content">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbNETSKOPE.</span></span><span class="sig-name descname"><span class="pre">save_page_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbNETSKOPE.html#save_page_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbNETSKOPE.save_page_content" title="Link to this definition">#</a></dt>
+<dd><p>Save the content of a web page to a file in the local file system.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url (str): The URL of the web page.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-Project.Script.RecupKbPaloAlto">
+<span id="project-script-recupkbpaloalto-module"></span><h2>Project.Script.RecupKbPaloAlto module<a class="headerlink" href="#module-Project.Script.RecupKbPaloAlto" title="Link to this heading">#</a></h2>
+<p>This module contains functions for retrieving the content of Palo Alto’s knowledge base and saving it to a file.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbPaloAlto.get_urls">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbPaloAlto.</span></span><span class="sig-name descname"><span class="pre">get_urls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbPaloAlto.html#get_urls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbPaloAlto.get_urls" title="Link to this definition">#</a></dt>
+<dd><p>Read an HTML file and extracts all URLs from anchor tags.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file_name (str): The path to the HTML file.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>List[str]: A list of URLs extracted from the HTML file.</dt><dd><p>Each URL is followed by a newline character.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbPaloAlto.get_urls_from_page_source">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbPaloAlto.</span></span><span class="sig-name descname"><span class="pre">get_urls_from_page_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbPaloAlto.html#get_urls_from_page_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbPaloAlto.get_urls_from_page_source" title="Link to this definition">#</a></dt>
+<dd><p>Read an HTML file and extracts all URLs from anchor tags.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file_name (str): The path to the HTML file.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>List[str]: A list of URLs extracted from the HTML file.</dt><dd><p>Each URL is followed by a newline character.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbPaloAlto.main">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbPaloAlto.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbPaloAlto.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbPaloAlto.main" title="Link to this definition">#</a></dt>
+<dd><p>Execute the entire process of scraping the Palo Alto knowledge base website.</p>
+<p>This function performs the following steps:
+1. Saves the HTML content of the main page to a file named ‘Temp/knowledge_base.html’.
+2. Extracts the URLs of the individual pages using regular expressions.
+3. Generates additional URLs for each page number from 2 to the maximum number of pages.
+4. Saves the URLs to a file named ‘Temp/FirstURLs.txt’.
+5. Calls the ‘scrapPages’ function to scrape the pages and their URLs.
+6. Removes all temporary files.</p>
+<p>This function does not take any parameters and does not return any values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbPaloAlto.save_knowledge_base">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbPaloAlto.</span></span><span class="sig-name descname"><span class="pre">save_knowledge_base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/Project/Script/RecupKbPaloAlto.html#save_knowledge_base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbPaloAlto.save_knowledge_base" title="Link to this definition">#</a></dt>
+<dd><p>Save the content of a webpage to a file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url (str): The URL of the webpage to save.
+file_name (str): The name of the file to save the content to.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+<dt>Raises:</dt><dd><p>None</p>
+</dd>
+</dl>
+<p>This function sends a GET request to the specified URL and retrieves the HTML content of the webpage.
+It then uses BeautifulSoup to parse the HTML and prettify it. The prettified HTML is then written to the specified file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbPaloAlto.save_page_source">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbPaloAlto.</span></span><span class="sig-name descname"><span class="pre">save_page_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">firstFolderName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbPaloAlto.html#save_page_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbPaloAlto.save_page_source" title="Link to this definition">#</a></dt>
+<dd><p>Save the page source of a given URL to a file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url (str): The URL of the page.
+firstFolderName (str): The name of the top-level folder.
+folder (str): The name of the subfolder.
+file_name (str): The name of the file to save the page source to.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbPaloAlto.save_urls">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbPaloAlto.</span></span><span class="sig-name descname"><span class="pre">save_urls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/Project/Script/RecupKbPaloAlto.html#save_urls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbPaloAlto.save_urls" title="Link to this definition">#</a></dt>
+<dd><p>Save a list of URLs to a file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>urls (List[str]): The list of URLs to save.
+file_name (str): The name of the file to save the URLs to.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbPaloAlto.scrapPages">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbPaloAlto.</span></span><span class="sig-name descname"><span class="pre">scrapPages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FirstUrls</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbPaloAlto.html#scrapPages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbPaloAlto.scrapPages" title="Link to this definition">#</a></dt>
+<dd><p>Scrap pages based on the list of URLs provided in FirstUrls.</p>
+<p>Check page source for search results and append URLs accordingly.
+Save page sources and extract URLs for further processing.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>FirstUrls (list): List of URLs to scrape pages from</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbPaloAlto.selenium">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbPaloAlto.</span></span><span class="sig-name descname"><span class="pre">selenium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbPaloAlto.html#selenium"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbPaloAlto.selenium" title="Link to this definition">#</a></dt>
+<dd><p>Use Selenium to open a URL in a headless browser.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url (str): The URL to open.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The page source of the opened URL.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-Project.Script.RecupKbZscaler">
+<span id="project-script-recupkbzscaler-module"></span><h2>Project.Script.RecupKbZscaler module<a class="headerlink" href="#module-Project.Script.RecupKbZscaler" title="Link to this heading">#</a></h2>
+<p>This module retrieves the content of Zscaler’s knowledge base and saves it to a file.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbZscaler.getAllCategory">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbZscaler.</span></span><span class="sig-name descname"><span class="pre">getAllCategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbZscaler.html#getAllCategory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbZscaler.getAllCategory" title="Link to this definition">#</a></dt>
+<dd><p>Read a file, parses its content using BeautifulSoup, extracts all the links from the parsed content, and filters them to get single segment links. It then writes the filtered links to a new file, removes irrelevant links and writes the remaining links to a new file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file (str): The path to the file to be read.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbZscaler.getAllPagesUrls">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbZscaler.</span></span><span class="sig-name descname"><span class="pre">getAllPagesUrls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbZscaler.html#getAllPagesUrls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbZscaler.getAllPagesUrls" title="Link to this definition">#</a></dt>
+<dd><p>Read a file with URLs, retrieves the source code of each URL, extracts links from the source code, and writes the extracted links to a new file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file (str): The path to the file containing URLs.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbZscaler.getContent">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbZscaler.</span></span><span class="sig-name descname"><span class="pre">getContent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbZscaler.html#getContent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbZscaler.getContent" title="Link to this definition">#</a></dt>
+<dd><p>Read URLs from a file, save their content to the local file system.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file (str): The path to the file containing the URLs.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbZscaler.getSourceCode">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbZscaler.</span></span><span class="sig-name descname"><span class="pre">getSourceCode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/Project/Script/RecupKbZscaler.html#getSourceCode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbZscaler.getSourceCode" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the source code of a webpage and saves it to a file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url (str): The URL of the webpage to retrieve the source code from.
+file (str): The path to the file where the source code will be saved.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbZscaler.main">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbZscaler.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbZscaler.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbZscaler.main" title="Link to this definition">#</a></dt>
+<dd><p>Execute the entire process of scraping the Zscaler knowledge base website.</p>
+<p>This function performs the following steps:
+1. Saves the HTML content of the main page to a file.
+2. Extracts all the categories from the parsed content.
+3. Generates all the pages URLs for each category.
+4. Scrapes all pages’ content for each category.
+5. Removes all temporary files.</p>
+<p>This function does not take any parameters and does not return any values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Project.Script.RecupKbZscaler.save_page_content">
+<span class="sig-prename descclassname"><span class="pre">Project.Script.RecupKbZscaler.</span></span><span class="sig-name descname"><span class="pre">save_page_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Project/Script/RecupKbZscaler.html#save_page_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Project.Script.RecupKbZscaler.save_page_content" title="Link to this definition">#</a></dt>
+<dd><p>Save the content of a web page to a file in the local file system.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url (str): The URL of the web page.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-Project.Script">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Project.Script" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Project.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Project package</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-Project.Script.RecupKbFortinet">Project.Script.RecupKbFortinet module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbFortinet.curlAllArticles"><code class="docutils literal notranslate"><span class="pre">curlAllArticles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbFortinet.generateAllArticleUrls"><code class="docutils literal notranslate"><span class="pre">generateAllArticleUrls()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbFortinet.generateAllPagesUrls"><code class="docutils literal notranslate"><span class="pre">generateAllPagesUrls()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbFortinet.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbFortinet.save_knowledge_base"><code class="docutils literal notranslate"><span class="pre">save_knowledge_base()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbFortinet.selenium"><code class="docutils literal notranslate"><span class="pre">selenium()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-Project.Script.RecupKbNETSKOPE">Project.Script.RecupKbNETSKOPE module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbNETSKOPE.extract_urls"><code class="docutils literal notranslate"><span class="pre">extract_urls()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbNETSKOPE.generateAllPagesUrls"><code class="docutils literal notranslate"><span class="pre">generateAllPagesUrls()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbNETSKOPE.getContent"><code class="docutils literal notranslate"><span class="pre">getContent()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbNETSKOPE.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbNETSKOPE.save_page_content"><code class="docutils literal notranslate"><span class="pre">save_page_content()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-Project.Script.RecupKbPaloAlto">Project.Script.RecupKbPaloAlto module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbPaloAlto.get_urls"><code class="docutils literal notranslate"><span class="pre">get_urls()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbPaloAlto.get_urls_from_page_source"><code class="docutils literal notranslate"><span class="pre">get_urls_from_page_source()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbPaloAlto.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbPaloAlto.save_knowledge_base"><code class="docutils literal notranslate"><span class="pre">save_knowledge_base()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbPaloAlto.save_page_source"><code class="docutils literal notranslate"><span class="pre">save_page_source()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbPaloAlto.save_urls"><code class="docutils literal notranslate"><span class="pre">save_urls()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbPaloAlto.scrapPages"><code class="docutils literal notranslate"><span class="pre">scrapPages()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbPaloAlto.selenium"><code class="docutils literal notranslate"><span class="pre">selenium()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-Project.Script.RecupKbZscaler">Project.Script.RecupKbZscaler module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbZscaler.getAllCategory"><code class="docutils literal notranslate"><span class="pre">getAllCategory()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbZscaler.getAllPagesUrls"><code class="docutils literal notranslate"><span class="pre">getAllPagesUrls()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbZscaler.getContent"><code class="docutils literal notranslate"><span class="pre">getContent()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbZscaler.getSourceCode"><code class="docutils literal notranslate"><span class="pre">getSourceCode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbZscaler.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Project.Script.RecupKbZscaler.save_page_content"><code class="docutils literal notranslate"><span class="pre">save_page_content()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-Project.Script">Module contents</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/Project.Script.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Maxime Bouet.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

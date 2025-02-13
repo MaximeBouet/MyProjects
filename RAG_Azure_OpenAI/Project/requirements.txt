@@ -1,0 +1,8 @@
+azure-identity
+Flask==3.0.3
+langchain==0.2.7
+langchain_community==0.2.7
+langchain_openai==0.1.16
+openai==1.35.13
+PyQt5==5.15.10
+PyQt5_sip==12.13.0

@@ -1,0 +1,1832 @@
+<!DOCTYPE html><html prefix="og: http://ogp.me/ns#" dir="ltr" lang="en" class="no-js">
+	<head>
+	
+	<title>
+	Technical Tip: How to configure Inter-VDOM links - Fortinet Community
+</title>
+	
+	
+	<title>How to configure Inter-VDOM links - Fortinet Community</title>
+    
+    <meta content="how to configure Inter-VDOM links.Scope Solution Refer to the video via the following link:   https://www.youtube.com/watch?v&amp;#61;mfJSk9OSpMc" property="og:description" />
+    <meta content="How to configure Inter-VDOM links" property="og:title" />
+
+<!-- OneTrust Cookies Consent Notice start for fortinet.com -->
+  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="f85f39fc-d7aa-467a-b762-fbb722748016" ></script>
+<script type="text/javascript">
+  function OptanonWrapper() {
+    if(OptanonActiveGroups?.length > 0){
+      if (OptanonActiveGroups.indexOf(',C0002,') !== -1) {
+        // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-XXXXX-Y', 'auto');
+        ga('send', 'pageview');
+        // End Google Analytics
+      }
+    }
+  }
+</script>
+<!-- OneTrust Cookies Consent Notice end for fortinet.com -->
+<meta name="google-site-verification" content="rCH9ri2cwt0MMyHmRzEpSu9PW-hd70qCGdfA73GgQbc" />
+
+
+	
+	
+	
+	<meta content="how to configure Inter-VDOM links.Scope Solution Refer to the video via the following link:   https://www.youtube.com/watch?v&amp;#61;mfJSk9OSpMc" name="description"/><meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/><meta content="2022-03-23T06:38:43+01:00" itemprop="dateModified"/><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/><link href="https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-configure-Inter-VDOM-links/ta-p/89" rel="canonical"/>
+	<meta content="https://community.fortinet.com/t5/user/viewprofilepage/user-id/5" property="article:author"/><meta content="article" property="og:type"/><meta content="https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-configure-Inter-VDOM-links/ta-p/89" property="og:url"/><meta content="FortiGate" property="article:section"/><meta content="Description This article describes how to configure Inter-VDOM links. Scope   Solution  Refer to the video via the following link:   https://www.youtube.com/watch?v=mfJSk9OSpMc" property="og:description"/><meta content="2021-11-15T10:08:37.019Z" property="article:published_time"/><meta content="2022-03-23T06:38:43+01:00" property="article:modified_time"/><meta content="Technical Tip: How to configure Inter-VDOM links" property="og:title"/>
+	
+	
+		<link class="lia-link-navigation hidden live-links" title="article Technical Tip: How to configure Inter-VDOM links in FortiGate" type="application/rss+xml" rel="alternate" id="link" href="/tpykb84852/rss/message?board.id=TKB20&amp;message.id=2"></link>
+	
+
+	
+	
+	    
+            	<link href="/skins/1927157/9dc694adbc9d3d1c74a2755da85824b3/fortinet.css" rel="stylesheet" type="text/css"/>
+            
+	
+
+	
+	
+	
+	
+	<link rel="shortcut icon" href="https://community.fortinet.com/html/@8972BC546BD31AB16BECA16D7565FCA0/assets/favicon.ico" />
+
+
+
+
+<script language="javascript" type="text/javascript">
+<!--
+if("undefined"==typeof LITHIUM)var LITHIUM={};LITHIUM.Loader=function(){var d=[],b=[],a=!1,c=!1;return{onLoad:function(b){"function"===typeof b&&(!0===a?b():d.push(b))},onJsAttached:function(a){"function"===typeof a&&(!0===c?a():b.push(a))},runJsAttached:function(){c=!0;for(var a=0;a<b.length;a++)b[a]()},getOnLoadFunctions:function(){return d},setLoaded:function(){a=!0},isLoaded:function(){return a},isJsAttached:function(){return c}}}();"undefined"===typeof LITHIUM.Components&&(LITHIUM.Components={});LITHIUM.Components.render=function(d,b,a){LITHIUM.Loader.onLoad(function(){var c=LITHIUM.Components.renderUrl(d),h={type:"GET",dataType:"json"};LITHIUM.jQuery.extend(h,a||{});h.hasOwnProperty("url")||LITHIUM.jQuery.extend(h,{url:c});h.data=b;if("object"!==typeof h.data||null===h.data)h.data={};h.data.originalPageName=LITHIUM.Components.ORIGINAL_PAGE_NAME;h.data.originalPageContext=LITHIUM.Components.ORIGINAL_PAGE_CONTEXT;LITHIUM.jQuery.ajax(h)}.bind(this))};
+LITHIUM.Components.renderUrl=function(d,b){var a=LITHIUM.Components.RENDER_URL;LITHIUM.jQuery.each({"component-id":d},function(b,d){a=a.replace(new RegExp("#{"+b+"}","g"),d)});"undefined"!==typeof b&&(a+="?"+LITHIUM.jQuery.param(b));return a};
+LITHIUM.Components.renderInPlace=function(d,b,a,c){function h(a){var b=document.createElement("div"),d=(new Date).getTime()+Math.floor(1E7*Math.random()+1);b.setAttribute("id",d);a.parentNode.insertBefore(b,a);return d}if(c)var q=c;else!1===LITHIUM.Loader.isLoaded()&&(document.currentScript?q=h(document.currentScript):(c=document.querySelectorAll("script"),1<c.length&&(q=h(c[c.length-1]))));LITHIUM.Loader.onLoad(function(){var c=LITHIUM.jQuery,h=b||{},m=a||{},k=c("#"+q);c.extend(h,{renderedScripts:LITHIUM.RenderedScripts.toString(),
+"component-id":d});c.extend(m,{success:function(a){var b=a.content;LITHIUM.AngularSupport.isAngularEnabled()&&(b=LITHIUM.AngularSupport.compile(b));k.replaceWith(b);LITHIUM.AjaxSupport.ScriptsProcessor.handleScriptEvaluation(a);(a=LITHIUM.jQuery(b).attr("id"))&&LITHIUM.jQuery("#"+a).trigger("LITHIUM:ajaxSuccess:renderInPlace",{componentId:d})},error:function(b,c,d){0===b.readyState||0===b.status?k.html(""):k.html('\x3cspan class\x3d"lia-ajax-error-text"\x3e'+a.errorMessage+"\x3c/span\x3e");k.removeClass(LITHIUM.Css.BASE_LAZY_LOAD).removeClass("lia-fa-spin")}});
+k&&LITHIUM.Components.render(d,h,m)}.bind(this))};/*
+ modernizr v3.3.1
+ Build https://modernizr.com/download?-exiforientation-filereader-flash-setclasses-dontmin
+
+ Copyright (c)
+  Faruk Ates
+  Paul Irish
+  Alex Sexton
+  Ryan Seddon
+  Patrick Kettner
+  Stu Cox
+  Richard Herrera
+
+ MIT License
+ {
+      "name": "EXIF Orientation",
+      "property": "exiforientation",
+      "tags": ["image"],
+      "builderAliases": ["exif_orientation"],
+      "async": true,
+      "authors": ["Paul Sayre"],
+      "notes": [{
+        "name": "Article by Dave Perrett",
+        "href": "http://recursive-design.com/blog/2012/07/28/exif-orientation-handling-is-a-ghetto/"
+      },{
+        "name": "Article by Calvin Hass",
+        "href": "http://www.impulseadventure.com/photo/exif-orientation.html"
+      }]
+    }
+    ! {
+      "name": "Flash",
+      "property": "flash",
+      "tags": ["flash"],
+      "polyfills": ["shumway"]
+      }
+      ! {
+      "name": "File API",
+      "property": "filereader",
+      "caniuse": "fileapi",
+      "notes": [{
+        "name": "W3C Working Draft",
+        "href": "https://www.w3.org/TR/FileAPI/"
+      }],
+      "tags": ["file"],
+      "builderAliases": ["file_api"],
+      "knownBugs": ["Will fail in Safari 5 due to its lack of support for the standards defined FileReader object"]
+    }
+    !*/
+LITHIUM.LiModernizr=function(){(function(d,b,a){function c(g){var a=n.className,b=e._config.classPrefix||"";r&&(a=a.baseVal);e._config.enableJSClass&&(a=a.replace(new RegExp("(^|\\s)"+b+"no-js(\\s|$)"),"$1"+b+"js$2"));e._config.enableClasses&&(a+=" "+b+g.join(" "+b),r?n.className.baseVal=a:n.className=a)}function h(){return"function"!==typeof b.createElement?b.createElement(arguments[0]):r?b.createElementNS.call(b,"http://www.w3.org/2000/svg",arguments[0]):b.createElement.apply(b,arguments)}function q(){var a=
+b.body;a||(a=h(r?"svg":"body"),a.fake=!0);return a}function p(a,b){if("object"==typeof a)for(var g in a)u(a,g)&&p(g,a[g]);else{a=a.toLowerCase();g=a.split(".");var l=e[g[0]];2==g.length&&(l=l[g[1]]);if("undefined"!=typeof l)return e;b="function"==typeof b?b():b;1==g.length?e[g[0]]=b:(!e[g[0]]||e[g[0]]instanceof Boolean||(e[g[0]]=new Boolean(e[g[0]])),e[g[0]][g[1]]=b);c([(b&&0!=b?"":"no-")+g.join("-")]);e._trigger(a,b)}return e}var t=[],m=[],k={_version:"3.3.1",_config:{classPrefix:"",enableClasses:!0,
+enableJSClass:!0,usePrefixes:!0},_q:[],on:function(a,b){var g=this;setTimeout(function(){b(g[a])},0)},addTest:function(a,b,c){m.push({name:a,fn:b,options:c})},addAsyncTest:function(a){m.push({name:null,fn:a})}},e=function(){};e.prototype=k;e=new e;var n=b.documentElement,r="svg"===n.nodeName.toLowerCase(),u;(function(){var a={}.hasOwnProperty;u="undefined"!==typeof a&&"undefined"!==typeof a.call?function(b,g){return a.call(b,g)}:function(a,b){return b in a&&"undefined"===typeof a.constructor.prototype[b]}})();
+k._l={};k.on=function(a,b){this._l[a]||(this._l[a]=[]);this._l[a].push(b);e.hasOwnProperty(a)&&setTimeout(function(){e._trigger(a,e[a])},0)};k._trigger=function(a,b){if(this._l[a]){var g=this._l[a];setTimeout(function(){var a;for(a=0;a<g.length;a++){var c=g[a];c(b)}},0);delete this._l[a]}};e._q.push(function(){k.addTest=p});e.addAsyncTest(function(){LITHIUM.Loader.onLoad(function(){var a=b.createElement("img");a.onerror=function(){p("exiforientation",!1,{aliases:["exif-orientation"]});b.body.removeChild(a)};
+a.onload=function(){p("exiforientation",2!==a.width,{aliases:["exif-orientation"]});b.body.removeChild(a)};a.src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAASUkqAAgAAAABABIBAwABAAAABgASAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAABAAIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+/iiiigD/2Q\x3d\x3d";
+b.body&&(a.setAttribute("style","position: absolute; left: -9999;"),b.body.appendChild(a))})});e.addAsyncTest(function(){var a=function(a){n.contains(a)||n.appendChild(a)},c=function(a,b){var c=!!a;c&&(c=new Boolean(c),c.blocked="blocked"===a);p("flash",function(){return c});if(b&&f.contains(b)){for(;b.parentNode!==f;)b=b.parentNode;f.removeChild(b)}};try{var e="ActiveXObject"in d&&"Pan"in new d.ActiveXObject("ShockwaveFlash.ShockwaveFlash")}catch(v){}if(!("plugins"in navigator&&"Shockwave Flash"in
+navigator.plugins||e)||r)c(!1);else{var l=h("embed"),f=q(),k;l.type="application/x-shockwave-flash";f.appendChild(l);if("Pan"in l||e){var m=function(){a(f);if(!n.contains(f))return f=b.body||f,l=h("embed"),l.type="application/x-shockwave-flash",f.appendChild(l),setTimeout(m,1E3);n.contains(l)?(k=l.style.cssText,""!==k?c("blocked",l):c(!0,l)):c("blocked");f.fake&&f.parentNode&&f.parentNode.removeChild(f)};setTimeout(m,10)}else a(f),c("blocked",l),f.fake&&f.parentNode&&f.parentNode.removeChild(f)}});
+e.addTest("filereader",!!(d.File&&d.FileList&&d.FileReader));(function(){var a,b;for(b in m)if(m.hasOwnProperty(b)){var c=[];var d=m[b];if(d.name&&(c.push(d.name.toLowerCase()),d.options&&d.options.aliases&&d.options.aliases.length))for(a=0;a<d.options.aliases.length;a++)c.push(d.options.aliases[a].toLowerCase());d="function"===typeof d.fn?d.fn():d.fn;for(a=0;a<c.length;a++){var f=c[a];f=f.split(".");1===f.length?e[f[0]]=d:(!e[f[0]]||e[f[0]]instanceof Boolean||(e[f[0]]=new Boolean(e[f[0]])),e[f[0]][f[1]]=
+d);t.push((d?"":"no-")+f.join("-"))}}})();c(t);delete k.addTest;delete k.addAsyncTest;for(a=0;a<e._q.length;a++)e._q[a]();LITHIUM.Modernizr=e})(window,document)}();(function(){LITHIUM.Globals=function(){var d={};return{preventGlobals:function(b){for(var a=0;a<b.length;a++){var c=b[a];c in window&&void 0!==window[c]&&(d[c]=window[c],window[c]=void 0)}},restoreGlobals:function(b){for(var a=0;a<b.length;a++){var c=b[a];d.hasOwnProperty(c)&&(window[c]=d[c])}}}}()})();(function(){LITHIUM.EarlyEventCapture=function(d,b,a){if(void 0===LITHIUM.jQuery||!0!==LITHIUM.jQuery.isReady||!LITHIUM.Loader.isJsAttached()){var c=d.getAttribute("data-lia-early-event-captured");if(!0===a&&!0!==c||!0===a)d.setAttribute("data-lia-early-event-captured",!0),LITHIUM.Loader.onJsAttached(function(){var a=LITHIUM.jQuery;a(function(){a(d).trigger(b)})});return!1}return!0}})();(function(d){Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector);Element.prototype.closest||(Element.prototype.closest=function(b){var a=this;do{if(a.matches(b))return a;a=a.parentElement||a.parentNode}while(null!==a&&1===a.nodeType);return null})})(LITHIUM.jQuery);window.FileAPI = { jsPath: '/html/assets/js/vendor/ng-file-upload-shim/' };
+LITHIUM.PrefetchData = {"Components":{},"commonResults":{}};
+LITHIUM.DEBUG = false;
+LITHIUM.CommunityJsonObject = {
+  "Validation" : {
+    "image.description" : {
+      "min" : 0,
+      "max" : 1000,
+      "isoneof" : [ ],
+      "type" : "string"
+    },
+    "tkb.toc_maximum_heading_level" : {
+      "min" : 1,
+      "max" : 6,
+      "isoneof" : [ ],
+      "type" : "integer"
+    },
+    "tkb.toc_heading_list_style" : {
+      "min" : 0,
+      "max" : 50,
+      "isoneof" : [
+        "disc",
+        "circle",
+        "square",
+        "none"
+      ],
+      "type" : "string"
+    },
+    "blog.toc_maximum_heading_level" : {
+      "min" : 1,
+      "max" : 6,
+      "isoneof" : [ ],
+      "type" : "integer"
+    },
+    "tkb.toc_heading_indent" : {
+      "min" : 5,
+      "max" : 50,
+      "isoneof" : [ ],
+      "type" : "integer"
+    },
+    "blog.toc_heading_indent" : {
+      "min" : 5,
+      "max" : 50,
+      "isoneof" : [ ],
+      "type" : "integer"
+    },
+    "blog.toc_heading_list_style" : {
+      "min" : 0,
+      "max" : 50,
+      "isoneof" : [
+        "disc",
+        "circle",
+        "square",
+        "none"
+      ],
+      "type" : "string"
+    }
+  },
+  "User" : {
+    "settings" : {
+      "imageupload.legal_file_extensions" : "*.jpg;*.JPG;*.jpeg;*.JPEG;*.gif;*.GIF;*.png;*.PNG;*.webm;*.bmp",
+      "config.enable_avatar" : true,
+      "integratedprofile.show_klout_score" : true,
+      "layout.sort_view_by_last_post_date" : true,
+      "layout.friendly_dates_enabled" : false,
+      "profileplus.allow.anonymous.scorebox" : false,
+      "tkb.message_sort_default" : "topicPublishDate",
+      "layout.format_pattern_date" : "MM-dd-yyyy",
+      "config.require_search_before_post" : "off",
+      "isUserLinked" : false,
+      "integratedprofile.cta_add_topics_dismissal_timestamp" : -1,
+      "layout.message_body_image_max_size" : 1000,
+      "profileplus.everyone" : false,
+      "integratedprofile.cta_connect_wide_dismissal_timestamp" : -1,
+      "blog.toc_maximum_heading_level" : "",
+      "integratedprofile.hide_social_networks" : false,
+      "blog.toc_heading_indent" : "",
+      "contest.entries_per_page_num" : 20,
+      "layout.messages_per_page_linear" : 8,
+      "integratedprofile.cta_manage_topics_dismissal_timestamp" : -1,
+      "profile.shared_profile_test_group" : false,
+      "integratedprofile.cta_personalized_feed_dismissal_timestamp" : -1,
+      "integratedprofile.curated_feed_size" : 10,
+      "contest.one_kudo_per_contest" : false,
+      "integratedprofile.enable_social_networks" : false,
+      "integratedprofile.my_interests_dismissal_timestamp" : -1,
+      "profile.language" : "en",
+      "layout.friendly_dates_max_age_days" : 31,
+      "layout.threading_order" : "thread_ascending",
+      "blog.toc_heading_list_style" : "disc",
+      "useRecService" : false,
+      "layout.module_welcome" : "<h1>Welcome to the <span> Fortinet Community! <\/span> <\/h1>\r\n<p>The community is a place to collaborate, share insights and experiences, and get answers to questions.<\/p>\r\n<p>Search here or look around to get started.<\/p>",
+      "imageupload.max_uploaded_images_per_upload" : 100,
+      "imageupload.max_uploaded_images_per_user" : 1000,
+      "integratedprofile.connect_mode" : "",
+      "tkb.toc_maximum_heading_level" : "",
+      "tkb.toc_heading_list_style" : "disc",
+      "sharedprofile.show_hovercard_score" : true,
+      "config.search_before_post_scope" : "community",
+      "tkb.toc_heading_indent" : "",
+      "p13n.cta.recommendations_feed_dismissal_timestamp" : -1,
+      "imageupload.max_file_size" : 7200,
+      "layout.show_batch_checkboxes" : false,
+      "integratedprofile.cta_connect_slim_dismissal_timestamp" : -1
+    },
+    "isAnonymous" : true,
+    "policies" : {
+      "image-upload.process-and-remove-exif-metadata" : false
+    },
+    "registered" : false,
+    "emailRef" : "",
+    "id" : -1,
+    "login" : "Anonymous"
+  },
+  "Server" : {
+    "communityPrefix" : "/tpykb84852",
+    "nodeChangeTimeStamp" : 1716278915295,
+    "tapestryPrefix" : "/t5",
+    "deviceMode" : "DESKTOP",
+    "responsiveDeviceMode" : "DESKTOP",
+    "membershipChangeTimeStamp" : "0",
+    "version" : "24.2",
+    "branch" : "24.2-release",
+    "showTextKeys" : false
+  },
+  "Config" : {
+    "phase" : "prod",
+    "integratedprofile.cta.reprompt.delay" : 30,
+    "profileplus.tracking" : {
+      "profileplus.tracking.enable" : false,
+      "profileplus.tracking.click.enable" : false,
+      "profileplus.tracking.impression.enable" : false
+    },
+    "app.revision" : "2405100550-s2fe493ce53-b111",
+    "navigation.manager.community.structure.limit" : "1000"
+  },
+  "Activity" : {
+    "Results" : [ ]
+  },
+  "NodeContainer" : {
+    "viewHref" : "https://community.fortinet.com/t5/Knowledge-Base/ct-p/knowledgebase",
+    "description" : "The Knowledge Base is a central hub for articles and technical tips on all Fortinet products.",
+    "id" : "knowledgebase",
+    "shortTitle" : "Knowledge Base",
+    "title" : "Knowledge Base",
+    "nodeType" : "category"
+  },
+  "Page" : {
+    "skins" : [
+      "fortinet",
+      "theme_hermes",
+      "responsive_peak"
+    ],
+    "authUrls" : {
+      "loginUrl" : "/tpykb84852/auth/saml/doauth/post?referer=https%3A%2F%2Fcommunity.fortinet.com%2Ft5%2FFortiGate%2FTechnical-Tip-How-to-configure-Inter-VDOM-links%2Fta-p%2F89",
+      "loginUrlNotRegistered" : "/tpykb84852/auth/saml/doauth/post?redirectreason=notregistered&referer=https%3A%2F%2Fcommunity.fortinet.com%2Ft5%2FFortiGate%2FTechnical-Tip-How-to-configure-Inter-VDOM-links%2Fta-p%2F89",
+      "loginUrlNotRegisteredDestTpl" : "/tpykb84852/auth/saml/doauth/post?redirectreason=notregistered&referer=%7B%7BdestUrl%7D%7D"
+    },
+    "name" : "TkbArticlePage",
+    "rtl" : false,
+    "object" : {
+      "viewHref" : "/t5/FortiGate/Technical-Tip-How-to-configure-Inter-VDOM-links/ta-p/89",
+      "subject" : "Technical Tip: How to configure Inter-VDOM links",
+      "id" : 89,
+      "page" : "TkbArticlePage",
+      "type" : "Thread"
+    }
+  },
+  "WebTracking" : {
+    "Activities" : { },
+    "path" : "Community:Fortinet Community/Category:Knowledge Base/Board:FortiGate/Message:Technical Tip: How to configure Inter-VDOM links"
+  },
+  "Feedback" : {
+    "targeted" : { }
+  },
+  "Seo" : {
+    "markerEscaping" : {
+      "pathElement" : {
+        "prefix" : "@",
+        "match" : "^[0-9][0-9]$"
+      },
+      "enabled" : false
+    }
+  },
+  "TopLevelNode" : {
+    "viewHref" : "https://community.fortinet.com/",
+    "description" : "<p>The community is a place to collaborate, share insights and experiences, and get answers to questions.<\/p>",
+    "id" : "tpykb84852",
+    "shortTitle" : "Fortinet Community",
+    "title" : "Fortinet Community",
+    "nodeType" : "Community"
+  },
+  "Community" : {
+    "viewHref" : "https://community.fortinet.com/",
+    "integratedprofile.lang_code" : "en",
+    "integratedprofile.country_code" : "US",
+    "id" : "tpykb84852",
+    "shortTitle" : "Fortinet Community",
+    "title" : "Fortinet Community"
+  },
+  "CoreNode" : {
+    "conversationStyle" : "tkb",
+    "viewHref" : "https://community.fortinet.com/t5/FortiGate/tkb-p/TKB20",
+    "settings" : { },
+    "description" : "FortiGate Next Generation Firewall utilizes purpose-built security processors and threat intelligence security services from FortiGuard labs to deliver top-rated protection and high performance, including encrypted traffic.",
+    "id" : "TKB20",
+    "shortTitle" : "FortiGate",
+    "title" : "FortiGate",
+    "nodeType" : "Board",
+    "ancestors" : [
+      {
+        "viewHref" : "https://community.fortinet.com/t5/Knowledge-Base/ct-p/knowledgebase",
+        "description" : "The Knowledge Base is a central hub for articles and technical tips on all Fortinet products.",
+        "id" : "knowledgebase",
+        "shortTitle" : "Knowledge Base",
+        "title" : "Knowledge Base",
+        "nodeType" : "category"
+      },
+      {
+        "viewHref" : "https://community.fortinet.com/",
+        "description" : "<p>The community is a place to collaborate, share insights and experiences, and get answers to questions.<\/p>",
+        "id" : "tpykb84852",
+        "shortTitle" : "Fortinet Community",
+        "title" : "Fortinet Community",
+        "nodeType" : "Community"
+      }
+    ]
+  }
+};
+LITHIUM.Components.RENDER_URL = "/t5/util/componentrenderpage/component-id/#{component-id}?render_behavior=raw";
+LITHIUM.Components.ORIGINAL_PAGE_NAME = 'tkb/v2_4/ArticlePage';
+LITHIUM.Components.ORIGINAL_PAGE_ID = 'TkbArticlePage';
+LITHIUM.Components.ORIGINAL_PAGE_CONTEXT = '9J1d7wb44sXOVYvmaEdo1N0Qexf00CzUngZdnK2DsMHouzq0KHcuH_iKpHAzr6eQty4095USYgEkfNCksdElU0hI6QOudx9vwy3HYhGiYYXGxURHrXd5Z0wleEN3R-tQDdEcTqCZaJ0j0xhN6RT_oOVotOeUEJqBL4ThrIcc0_CVACMP6wz6ypGRUbi5QH_hV0VmgPRskNqLwJTpGXHcNABz3Ym5dRxMe07jDCMwq1xl2fsvamQCyaEDUgoh5EJdZKyTn8FH70USPYzlt9ORQTDkXXBkx7IlnWHnC9R89Ys5dwhI-DUTDgaV8UcxjTpHgHg17JsFKCCWazH6YUHmWQ..';
+LITHIUM.Css = {
+  "BASE_DEFERRED_IMAGE" : "lia-deferred-image",
+  "BASE_BUTTON" : "lia-button",
+  "BASE_SPOILER_CONTAINER" : "lia-spoiler-container",
+  "BASE_TABS_INACTIVE" : "lia-tabs-inactive",
+  "BASE_TABS_ACTIVE" : "lia-tabs-active",
+  "BASE_AJAX_REMOVE_HIGHLIGHT" : "lia-ajax-remove-highlight",
+  "BASE_FEEDBACK_SCROLL_TO" : "lia-feedback-scroll-to",
+  "BASE_FORM_FIELD_VALIDATING" : "lia-form-field-validating",
+  "BASE_FORM_ERROR_TEXT" : "lia-form-error-text",
+  "BASE_FEEDBACK_INLINE_ALERT" : "lia-panel-feedback-inline-alert",
+  "BASE_BUTTON_OVERLAY" : "lia-button-overlay",
+  "BASE_TABS_STANDARD" : "lia-tabs-standard",
+  "BASE_AJAX_INDETERMINATE_LOADER_BAR" : "lia-ajax-indeterminate-loader-bar",
+  "BASE_AJAX_SUCCESS_HIGHLIGHT" : "lia-ajax-success-highlight",
+  "BASE_CONTENT" : "lia-content",
+  "BASE_JS_HIDDEN" : "lia-js-hidden",
+  "BASE_AJAX_LOADER_CONTENT_OVERLAY" : "lia-ajax-loader-content-overlay",
+  "BASE_FORM_FIELD_SUCCESS" : "lia-form-field-success",
+  "BASE_FORM_WARNING_TEXT" : "lia-form-warning-text",
+  "BASE_FORM_FIELDSET_CONTENT_WRAPPER" : "lia-form-fieldset-content-wrapper",
+  "BASE_AJAX_LOADER_OVERLAY_TYPE" : "lia-ajax-overlay-loader",
+  "BASE_FORM_FIELD_ERROR" : "lia-form-field-error",
+  "BASE_SPOILER_CONTENT" : "lia-spoiler-content",
+  "BASE_FORM_SUBMITTING" : "lia-form-submitting",
+  "BASE_EFFECT_HIGHLIGHT_START" : "lia-effect-highlight-start",
+  "BASE_FORM_FIELD_ERROR_NO_FOCUS" : "lia-form-field-error-no-focus",
+  "BASE_EFFECT_HIGHLIGHT_END" : "lia-effect-highlight-end",
+  "BASE_SPOILER_LINK" : "lia-spoiler-link",
+  "FACEBOOK_LOGOUT" : "lia-component-users-action-logout",
+  "BASE_DISABLED" : "lia-link-disabled",
+  "FACEBOOK_SWITCH_USER" : "lia-component-admin-action-switch-user",
+  "BASE_FORM_FIELD_WARNING" : "lia-form-field-warning",
+  "BASE_AJAX_LOADER_FEEDBACK" : "lia-ajax-loader-feedback",
+  "BASE_AJAX_LOADER_OVERLAY" : "lia-ajax-loader-overlay",
+  "BASE_LAZY_LOAD" : "lia-lazy-load"
+};
+LITHIUM.noConflict = true;
+LITHIUM.useCheckOnline = false;
+LITHIUM.RenderedScripts = [
+  "SpoilerToggle.js",
+  "jquery.js",
+  "NoConflict.js",
+  "jquery.position-toggle-1.0.js",
+  "Globals.js",
+  "Lithium.js",
+  "jquery.effects.slide.js",
+  "DataHandler.js",
+  "Events.js",
+  "jquery.json-2.6.0.js",
+  "ResizeSensor.js",
+  "Video.js",
+  "ElementMethods.js",
+  "MessageBodyDisplay.js",
+  "jquery.appear-1.1.1.js",
+  "Auth.js",
+  "jquery.ui.core.js",
+  "Namespace.js",
+  "AjaxFeedback.js",
+  "DeferredImages.js",
+  "Sandbox.js",
+  "Loader.js",
+  "Throttle.js",
+  "ActiveCast3.js",
+  "Components.js",
+  "jquery.viewport-1.0.js",
+  "jquery.ui.position.js",
+  "json2.js",
+  "jquery.scrollTo.js",
+  "prism.js",
+  "InformationBox.js",
+  "jquery.delayToggle-1.0.js",
+  "Dialog.js",
+  "jquery.effects.core.js",
+  "jquery.css-data-1.0.js",
+  "Link.js",
+  "jquery.ui.draggable.js",
+  "jquery.ui.resizable.js",
+  "jquery.lithium-selector-extensions.js",
+  "jquery.iframe-transport.js",
+  "LiModernizr.js",
+  "PolyfillsAll.js",
+  "Cache.js",
+  "jquery.ui.widget.js",
+  "Forms.js",
+  "CustomEvent.js",
+  "jquery.ajax-cache-response-1.0.js",
+  "EarlyEventCapture.js",
+  "jquery.ui.dialog.js",
+  "ForceLithiumJQuery.js",
+  "PartialRenderProxy.js",
+  "jquery.fileupload.js",
+  "DropDownMenuVisibilityHandler.js",
+  "ElementQueries.js",
+  "jquery.hoverIntent-r6.js",
+  "AjaxSupport.js",
+  "jquery.iframe-shim-1.0.js",
+  "jquery.function-utils-1.0.js",
+  "jquery.tmpl-1.1.1.js",
+  "jquery.clone-position-1.0.js",
+  "Text.js",
+  "jquery.ui.mouse.js",
+  "DropDownMenu.js",
+  "jquery.blockui.js"
+];(function(){LITHIUM.AngularSupport=function(){function g(a,c){a=a||{};for(var b in c)"[object object]"===Object.prototype.toString.call(c[b])?a[b]=g(a[b],c[b]):a[b]=c[b];return a}var d,f,b={coreModule:"li.community",coreModuleDeps:[],noConflict:!0,bootstrapElementSelector:".lia-page .min-width .lia-content",bootstrapApp:!0,debugEnabled:!1,useCsp:!0,useNg2:!1},k=function(){var a;return function(b){a||(a=document.createElement("a"));a.href=b;return a.href}}();LITHIUM.Angular={};return{preventGlobals:LITHIUM.Globals.preventGlobals,
+restoreGlobals:LITHIUM.Globals.restoreGlobals,init:function(){var a=[],c=document.querySelector(b.bootstrapElementSelector);a.push(b.coreModule);b.customerModules&&0<b.customerModules.length&&a.concat(b.customerModules);b.useCsp&&(c.setAttribute("ng-csp","no-unsafe-eval"),c.setAttribute("li-common-non-bindable",""));d=LITHIUM.angular.module(b.coreModule,b.coreModuleDeps);d.config(["$locationProvider","$provide","$injector","$logProvider","$compileProvider","$qProvider","$anchorScrollProvider",function(a,
+c,e,d,f,g,h){h.disableAutoScrolling();h=document.createElement("base");h.setAttribute("href",k(location));document.getElementsByTagName("head")[0].appendChild(h);window.history&&window.history.pushState&&a.html5Mode({enabled:!0,requireBase:!0,rewriteLinks:!1}).hashPrefix("!");d.debugEnabled(b.debugEnabled);f.debugInfoEnabled(b.debugEnabled);e.has("$uibModal")&&c.decorator("$uibModal",["$delegate",function(a){var b=a.open;a.open=function(a){a.backdropClass=(a.backdropClass?a.backdropClass+" ":"")+
+"lia-modal-backdrop";a.windowClass=(a.windowClass?a.windowClass+" ":"")+"lia-modal-window";return b(a)};return a}]);e.has("uibDropdownConfig")&&(e.get("uibDropdownConfig").openClass="lia-dropdown-open");e.has("uibButtonConfig")&&(e.get("uibButtonConfig").activeClass="lia-link-active");g.errorOnUnhandledRejections(!1)}]);if(b.bootstrapApp)f=b.useNg2?LITHIUM.Angular.upgradeAdapter.bootstrap(c,a):LITHIUM.angular.bootstrap(c,a);else LITHIUM.Loader.onLoad(function(){f=LITHIUM.angular.element(c).injector()});
+LITHIUM.Angular.app=d},compile:function(a){void 0===a&&(a=document.querySelector(b.bootstrapElementSelector));var c;if(void 0===a||""===a)return a;f.invoke(["$rootScope","$compile",function(b,d){try{var e=LITHIUM.angular.element(a)}catch(l){e=LITHIUM.angular.element("\x3cli:safe-wrapper\x3e"+a+"\x3c/li:safe-wrapper\x3e")}e.attr("li-common-non-bindable","");c=d(e)(b);b.$digest()}]);return c},isAngularEnabled:function(){return void 0!==d},updateLocationUrl:function(a,b){f.invoke(["$location","$rootScope",
+"$browser",function(c,d,e){a=""===a?"?":a;c.url(a,b);d.$apply()}])},setOptions:function(a){return g(b,a)},getOptions:function(){return b},initGlobal:function(a){LITHIUM.angular=a;b.useNg2&&(LITHIUM.Angular.upgradeAdapter=new ng.upgrade.UpgradeAdapter)}}}()})();(function(){LITHIUM.ScriptLoader=function(){function d(a){a in e||(e[a]={loaded:!1});return e[a]}function f(){g.filter(function(a){return!a.loaded}).forEach(function(a){var b=!0;a.labels.forEach(function(a){!1===d(a).loaded&&(b=!1)});b&&(a.loaded=!0,a.callback())})}var e={},g=[];return{load:function(a){a.forEach(function(a){var b=document.getElementsByTagName("head")[0]||document.documentElement,c=document.createElement("script");c.src=a.url;c.async=!1;a.crossorigin&&a.integrity&&(c.setAttribute("crossorigin",
+a.crossorigin),c.setAttribute("integrity",a.integrity));b.insertBefore(c,b.firstChild);d(a.label)})},setLoaded:function(a){d(a).loaded=!0;f()},ready:function(a,b){g.push({labels:a,callback:b,loaded:!1});f()}}}()})();LITHIUM.ScriptLoader.load([{"name":"lia-scripts-common-min.js","label":"common","url":"/t5/scripts/58C18FA9C9659AE8CFC90859DF85F6E7/lia-scripts-common-min.js"},{"name":"lia-scripts-body-min.js","label":"body","url":"/t5/scripts/C81E864967EC119DB0C4D4AD2514F63A/lia-scripts-body-min.js"},{"name":"lia-scripts-angularjs-min.js","label":"angularjs","url":"/t5/scripts/00A777938B56ECCE5DB9E6C80A2C3591/lia-scripts-angularjs-min.js"},{"name":"lia-scripts-angularjsModules-min.js","label":"angularjsModules","url":"/t5/scripts/24F99A8450BB7106C31AD383287DF112/lia-scripts-angularjsModules-min.js"}]);
+// -->
+</script></head>
+	<body class="lia-tkb lia-user-status-anonymous TkbArticlePage lia-body lia-a11y" id="lia-body">
+	
+	
+	<div id="5982-51-4" class="ServiceNodeInfoHeader">
+</div>
+	
+	
+	
+	
+
+	<div class="lia-page">
+		<center>
+			
+				
+					
+	
+	<div class="MinimumWidthContainer">
+		<div class="min-width-wrapper">
+			<div class="min-width">		
+				
+						<div class="lia-content">
+                            
+							
+							
+							
+		
+	<div class="lia-quilt lia-quilt-tkb-article-page lia-quilt-layout-one-column lia-top-quilt lia-quilt-tkb-article-page-v2_4">
+	<div class="lia-quilt-row lia-quilt-row-header">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-common-header">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			<div class="lia-quilt lia-quilt-header lia-quilt-layout-custom-community-header lia-component-quilt-header">
+	<div class="lia-quilt-row lia-quilt-row-header-top">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-header-top-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		<div class="custom-community-header-left">
+			
+		
+			<div class="lia-slide-out-nav-menu lia-component-common-widget-slide-out-nav-menu">
+    <button li-bindable="" li-common-element-hook="navMenuTriggerElement" class="lia-slide-menu-trigger lia-slide-out-nav-menu-wrapper">
+        <div ng-non-bindable="" class="lia-slide-out-nav-menu-title">
+            Browse
+        </div>
+    </button>
+    <li:common-slide-menu li-bindable="" trigger-element="navMenuTriggerElement" li-direction="left" style="display:none">
+        <div class="lia-quilt lia-quilt-navigation-slide-out-menu lia-quilt-layout-one-column">
+	<div class="lia-quilt-row lia-quilt-row-header">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-common-header lia-mark-empty">
+			
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-main">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-main-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			<li:community-navigation class="lia-component-community-widget-navigation" li-bindable="" li-instance="0" componentId="community.widget.navigation" mode="default"></li:community-navigation>
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-footer">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-common-footer lia-mark-empty">
+			
+		</div>
+	</div>
+</div>
+    </li:common-slide-menu>
+</div>
+		
+			
+<div class="custom-community-header-logo">
+    <a href="/" style="background: url('/html/assets/logo.svg') no-repeat 50% / contain;" class="community-header-logo-link">Fortinet Community</a>
+</div>
+
+		
+	
+		</div>
+	
+	
+
+	
+		<div class="custom-community-header-right">
+			
+		
+			<div class="custom-community-header-user-navigation">
+<a class="lia-link-navigation faq-link lia-component-help-action-faq" id="faqPage_75acb08ffc529b" href="/t5/help/faqpage">Help</a><a class="lia-link-navigation login-link lia-authentication-link lia-component-users-action-login" rel="nofollow" id="loginPageV2_75acb090048e9c" href="/tpykb84852/auth/saml/doauth/post?referer=https%3A%2F%2Fcommunity.fortinet.com%2Ft5%2FFortiGate%2FTechnical-Tip-How-to-configure-Inter-VDOM-links%2Fta-p%2F89">Sign In</a></div>
+
+		
+	
+		</div>
+	
+	
+
+	
+		
+			
+  <style>
+    .custom-community-header-navigation-v2>ul a[href*="/idb-p/ideas"]{
+      display: none !important;
+    }
+  </style>
+
+
+
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-header-navigation">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-header-navigation-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			 
+
+<div class="custom-community-header-navigation-v2"> <ul> <li class="has-children"> <a href="/t5/Forums/ct-p/forums">Forums</a> <ul class="custom-community-header-sub-navigation"> <li class="depth2 "> <a href="/t5/Support-Forum/bd-p/fortinet-discussion" class="nav-category">Support Forum</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> </ul> </li> <li class="has-children"> <a href="/t5/Knowledge-Base/ct-p/knowledgebase">Knowledge Base</a> <ul class="custom-community-header-sub-navigation"> <li class="depth2 "> <a href="/t5/Customer-Service/tkb-p/TKB36" class="nav-category">Customer Service</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiGate/tkb-p/TKB20" class="nav-category">FortiGate</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiClient/tkb-p/TKB10" class="nav-category">FortiClient</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiAP/tkb-p/TKB3" class="nav-category">FortiAP</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiAnalyzer/tkb-p/TKB2" class="nav-category">FortiAnalyzer</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiADC/tkb-p/TKB4" class="nav-category">FortiADC</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiAuthenticator/tkb-p/TKB5" class="nav-category">FortiAuthenticator</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiBridge/tkb-p/TKB6" class="nav-category">FortiBridge</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiCache/tkb-p/TKB7" class="nav-category">FortiCache</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiCarrier/tkb-p/TKB8" class="nav-category">FortiCarrier</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiCASB/tkb-p/TKB9" class="nav-category">FortiCASB</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiConnect/tkb-p/TKB12" class="nav-category">FortiConnect</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiConverter/tkb-p/TKB37" class="nav-category">FortiConverter</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiCNP/tkb-p/TKB38" class="nav-category">FortiCNP</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiDAST/tkb-p/TKB51" class="nav-category">FortiDAST</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiDDoS/tkb-p/TKB14" class="nav-category">FortiDDoS</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiDB/tkb-p/TKB13" class="nav-category">FortiDB</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiDNS/tkb-p/TKB39" class="nav-category">FortiDNS</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiDeceptor/tkb-p/TKB15" class="nav-category">FortiDeceptor</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiDevSec/tkb-p/TKB46" class="nav-category">FortiDevSec</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiDirector/tkb-p/TKB16" class="nav-category">FortiDirector</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiEDR/tkb-p/TKB17" class="nav-category">FortiEDR</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiExtender/tkb-p/TKB18" class="nav-category">FortiExtender</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiGate-Cloud/tkb-p/TKB11" class="nav-category">FortiGate Cloud</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiGuard/tkb-p/TKB33" class="nav-category">FortiGuard</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiHypervisor/tkb-p/TKB40" class="nav-category">FortiHypervisor</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiInsight/tkb-p/TKB41" class="nav-category">FortiInsight</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiIsolator/tkb-p/fortiIsolatorKb" class="nav-category">FortiIsolator</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiMail/tkb-p/TKB21" class="nav-category">FortiMail</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiManager/tkb-p/TKB22" class="nav-category">FortiManager</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiMonitor/tkb-p/TKB45" class="nav-category">FortiMonitor</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiNAC/tkb-p/TKB23" class="nav-category">FortiNAC</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiNAC-F/tkb-p/fortinac-f" class="nav-category">FortiNAC-F</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiNDR-on-premise/tkb-p/TKB49" class="nav-category">FortiNDR (on-premise)</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiNDRCloud/tkb-p/fortindrcloud" class="nav-category">FortiNDRCloud</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiPAM/tkb-p/TKB52" class="nav-category">FortiPAM</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiPortal/tkb-p/TKB24" class="nav-category">FortiPortal</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiProxy/tkb-p/TKB25" class="nav-category">FortiProxy</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiRecon/tkb-p/TKB48" class="nav-category">FortiRecon</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiRecorder/tkb-p/TKB26" class="nav-category">FortiRecorder</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiSandbox/tkb-p/TKB27" class="nav-category">FortiSandbox</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiSASE/tkb-p/fortisase" class="nav-category">FortiSASE</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiScan/tkb-p/TKB42" class="nav-category">FortiScan</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiSIEM/tkb-p/TKB28" class="nav-category">FortiSIEM</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiSOAR-Knowledge-Base/tkb-p/TKB29" class="nav-category">FortiSOAR</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiSwitch/tkb-p/TKB30" class="nav-category">FortiSwitch</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiTester/tkb-p/TKB50" class="nav-category">FortiTester</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiToken/tkb-p/TKB31" class="nav-category">FortiToken</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiVoice/tkb-p/TKB19" class="nav-category">FortiVoice</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiWAN/tkb-p/TKB32" class="nav-category">FortiWAN</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiWeb/tkb-p/TKB34" class="nav-category">FortiWeb</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiWebCloud/tkb-p/TKB53" class="nav-category">FortiWebCloud</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/Wireless-Controller/tkb-p/TKB35" class="nav-category">Wireless Controller</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/RMA-Service/tkb-p/TKB43" class="nav-category">RMA Information and Announcements</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/FortiCloud-Products/tkb-p/TKB44" class="nav-category">FortiCloud Products</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/ZTNA/tkb-p/TKB47" class="nav-category">ZTNA</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/4D-Documents/tkb-p/4DDocumentsKb" class="nav-category">4D Documents</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> </ul> </li> <li class="has-children"> <a href="/t5/Community-Groups/ct-p/groups">Community Groups</a> <ul class="custom-community-header-sub-navigation"> <li class="depth2 "> <a href="/t5/Agora/cmp-p/grouphub%3Aagora" class="nav-category">Agora</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/Engage-Services/cmp-p/grouphub%3Aengage-services" class="nav-category">Engage Services</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/The-EPSP-Platform/cmp-p/grouphub%3Aepsp" class="nav-category">The EPSP Platform</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/The-ETSP-Platform/cmp-p/grouphub%3Aetsp" class="nav-category">The ETSP Platform</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/Finland/cmp-p/grouphub%3Afinnish" class="nav-category">Finland</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 has-children"> <a href="/t5/FortiGate-VM-on-AWS/gh-p/fortigate-vm-on-aws" class="nav-category">FortiGate-VM on AWS</a> <ul class="custom-community-header-sub-navigation"> <li class="depth3"> <a href="/t5/FortiGate-VM-on-AWS-Getting/bd-p/fortigate-vm-on-awsforum-board" class="nav-category">Getting Started Resources</a> </li> <li class="depth3"> <a href="/t5/FortiGate-VM-on-AWS-Technical/bg-p/fortigate-vm-on-awsblog-board" class="nav-category">Technical Learning</a> </li> </ul> </li> <li class="depth2 has-children"> <a href="/t5/Fortinet-for-SAP/gh-p/fortinet-for-sap" class="nav-category">Fortinet for SAP</a> <ul class="custom-community-header-sub-navigation"> <li class="depth3"> <a href="/t5/Fortinet-for-SAP-Discussions/bd-p/fortinet-for-sapforum-board" class="nav-category">Discussions</a> </li> <li class="depth3"> <a href="/t5/Fortinet-for-SAP-Technical/bg-p/fortinet-for-sapblog-board" class="nav-category">Technical Learning</a> </li> <li class="depth3"> <a href="/t5/Fortinet-for-SAP-Knowledge-Base/tkb-p/fortinet-for-saptkb-board" class="nav-category">Knowledge Base</a> </li> <li class="depth3"> <a href="/t5/Fortinet-for-SAP-Idea-Exchange/idb-p/fortinet-for-sapidea-board" class="nav-category">Idea Exchange</a> </li> <li class="depth3"> <a href="/t5/Fortinet-for-SAP-Events/eb-p/fortinet-for-sapoccasion-board" class="nav-category">Events</a> </li> </ul> </li> <li class="depth2 has-children"> <a href="/t5/FortiSIEM/gh-p/fortisiem" class="nav-category">FortiSIEM</a> <ul class="custom-community-header-sub-navigation"> <li class="depth3"> <a href="/t5/FortiSIEM-Discussions/bd-p/fortisiemforum-board" class="nav-category">Discussions</a> </li> <li class="depth3"> <a href="/t5/FortiSIEM-Blog/bg-p/fortisiemblog-board" class="nav-category">Blog</a> </li> </ul> </li> <li class="depth2 has-children"> <a href="/t5/FortiSOAR/gh-p/fortisoar" class="nav-category">FortiSOAR</a> <ul class="custom-community-header-sub-navigation"> <li class="depth3"> <a href="/t5/FortiSOAR-Discussions/bd-p/fortisoarforum-board" class="nav-category">Discussions</a> </li> <li class="depth3"> <a href="/t5/FortiSOAR-Announcements/tkb-p/fortisoartkb-board" class="nav-category">Announcements</a> </li> <li class="depth3"> <a href="/t5/FortiSOAR-Ideas/idb-p/fortisoaridea-board" class="nav-category">Idea Exchange</a> </li> </ul> </li> <li class="depth2 "> <a href="/t5/KCS/cmp-p/grouphub%3Akcs" class="nav-category">KCS</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> <li class="depth2 "> <a href="/t5/Super-User/cmp-p/grouphub%3Asuperuser" class="nav-category">Super User</a> <ul class="custom-community-header-sub-navigation"> </ul> </li> </ul> </li> <li > <a href="/t5/Blogs/bg-p/blogs">Blogs</a> </li> </ul> </div>
+
+
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-header-hero">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-header-hero-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			
+    <style>
+    #lia-body .lia-quilt-row-header-hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/html/assets/homepage-banner-bg.png") no-repeat center / cover;
+    }
+    </style>
+
+		
+	
+	
+
+	
+		<div class="header-hero-wrapper">
+			
+		
+			<div class='lia-node-header-info lia-component-common-widget-node-information' id='nodeInformation'>
+    <div class='lia-node-header-title'>
+    	FortiGate
+    </div>
+    <div class='lia-node-header-description'>
+    	FortiGate Next Generation Firewall utilizes purpose-built security processors and threat intelligence security services from FortiGuard labs to deliver top-rated protection and high performance, including encrypted traffic.
+    </div>
+</div>
+		
+	
+		</div>
+	
+	
+
+	
+		
+			<script type="text/javascript" src="https://d11h0pey8cu31p.cloudfront.net/c2693f1a6f6497b3dda27f28214d4d0f/search-clients/8021d0dd-1517-11ec-b3e2-0242ac12000d/an.js"></script>
+<script type="text/javascript" src="https://d11h0pey8cu31p.cloudfront.net/c2693f1a6f6497b3dda27f28214d4d0f/search-clients/8021d0dd-1517-11ec-b3e2-0242ac12000d/searchbox.js"></script>
+<link rel="stylesheet" href="https://d11h0pey8cu31p.cloudfront.net/c2693f1a6f6497b3dda27f28214d4d0f/search-clients/8021d0dd-1517-11ec-b3e2-0242ac12000d/searchbox.css">
+<div id="auto">
+    <div ng-controller="SearchautoController">
+      <div bind-html-compile="autocompleteHtml"></div>
+    </div>
+</div>
+<script>
+    window.su_community_path = '/plugins/custom/fortinetemea/fortinetemea/searchunify_endpoint';
+    GzAnalytics.setUser("");
+</script>
+
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-header-bottom">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-header-bottom-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			<div aria-label="breadcrumbs" role="navigation" class="BreadCrumb crumb-line lia-breadcrumb lia-component-common-widget-breadcrumb">
+	<ul role="list" id="list" class="lia-list-standard-inline">
+	
+		
+			<li class="lia-breadcrumb-node crumb">
+				<a class="lia-link-navigation crumb-community lia-breadcrumb-community lia-breadcrumb-tkb" id="link_0" href="/">Fortinet Community</a>
+			</li>
+			
+				<li aria-hidden="true" class="lia-breadcrumb-seperator crumb-community lia-breadcrumb-community lia-breadcrumb-tkb">
+				  
+           			 <span>
+           				 <span class="lia-img-icon-list-separator-breadcrumb lia-fa-icon lia-fa-list lia-fa-separator lia-fa-breadcrumb lia-fa" alt="" aria-label="" role="img" id="display"></span>
+  					</span>
+          		  
+       			 
+				</li>
+			
+		
+			<li class="lia-breadcrumb-node crumb">
+				<a class="lia-link-navigation crumb-category lia-breadcrumb-category lia-breadcrumb-tkb" id="link_1" href="/t5/Knowledge-Base/ct-p/knowledgebase">Knowledge Base</a>
+			</li>
+			
+				<li aria-hidden="true" class="lia-breadcrumb-seperator crumb-category lia-breadcrumb-category lia-breadcrumb-tkb">
+				  
+           			 <span>
+           				 <span class="lia-img-icon-list-separator-breadcrumb lia-fa-icon lia-fa-list lia-fa-separator lia-fa-breadcrumb lia-fa" alt="" aria-label="" role="img" id="display_0"></span>
+  					</span>
+          		  
+       			 
+				</li>
+			
+		
+			<li class="lia-breadcrumb-node crumb">
+				<a class="lia-link-navigation crumb-board lia-breadcrumb-board lia-breadcrumb-tkb" id="link_2" href="/t5/FortiGate/tkb-p/TKB20">FortiGate</a>
+			</li>
+			
+				<li aria-hidden="true" class="lia-breadcrumb-seperator crumb-board lia-breadcrumb-board lia-breadcrumb-tkb">
+				  
+           			 <span>
+           				 <span class="lia-img-icon-list-separator-breadcrumb lia-fa-icon lia-fa-list lia-fa-separator lia-fa-breadcrumb lia-fa" alt="" aria-label="" role="img" id="display_1"></span>
+  					</span>
+          		  
+       			 
+				</li>
+			
+		
+			<li class="lia-breadcrumb-node crumb final-crumb">
+				<span class="lia-link-navigation child-thread lia-link-disabled" aria-disabled="true" disabled="true" role="link" aria-label="Technical Tip: How to configure Inter-VDOM links" id="link_3">Technical Tip: How to configure Inter-VDOM links</span>
+			</li>
+			
+		
+	
+</ul>
+</div>
+		
+			
+    <div class="lia-menu-navigation-wrapper lia-js-hidden lia-menu-action lia-page-options lia-component-community-widget-page-options" id="actionMenuDropDown">	
+	<div class="lia-menu-navigation">
+		<div class="dropdown-default-item"><a title="Show option menu" class="lia-js-menu-opener default-menu-option lia-js-click-menu lia-link-navigation" aria-expanded="false" role="button" aria-label="Options" id="dropDownLink" href="#">Options</a>
+			<div class="dropdown-positioning">
+				<div class="dropdown-positioning-static">
+					
+	<ul aria-label="Dropdown menu items" role="list" id="dropdownmenuitems" class="lia-menu-dropdown-items">
+		
+
+	
+	
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			<li role="listitem"><a class="lia-link-navigation rss-thread-link lia-component-rss-action-thread" rel="nofollow noopener noreferrer" id="rssThread" href="/tpykb84852/rss/message?board.id=TKB20&amp;message.id=2">Subscribe to RSS Feed</a></li>
+		
+			<li aria-hidden="true"><span class="lia-separator lia-component-common-widget-link-separator">
+	<span class="lia-separator-post"></span>
+	<span class="lia-separator-pre"></span>
+</span></li>
+		
+			<li role="listitem"><span class="lia-link-navigation mark-thread-unread lia-link-disabled lia-component-forums-action-mark-thread-unread" aria-disabled="true" id="markThreadUnread">Mark as New</span></li>
+		
+			<li role="listitem"><span class="lia-link-navigation mark-thread-read lia-link-disabled lia-component-forums-action-mark-thread-read" aria-disabled="true" id="markThreadRead">Mark as Read</span></li>
+		
+			<li aria-hidden="true"><span class="lia-separator lia-component-common-widget-link-separator">
+	<span class="lia-separator-post"></span>
+	<span class="lia-separator-pre"></span>
+</span></li>
+		
+			
+		
+			<li role="listitem"><span class="lia-link-navigation addThreadUserBookmark lia-link-disabled lia-component-subscriptions-action-add-thread-user-bookmark" aria-disabled="true" id="addThreadUserBookmark">Bookmark</span></li>
+		
+			
+		
+			<li role="listitem"><span class="lia-link-navigation addThreadUserEmailSubscription lia-link-disabled lia-component-subscriptions-action-add-thread-user-email" aria-disabled="true" id="addThreadUserEmailSubscription">Subscribe</span></li>
+		
+			<li aria-hidden="true"><span class="lia-separator lia-component-common-widget-link-separator">
+	<span class="lia-separator-post"></span>
+	<span class="lia-separator-pre"></span>
+</span></li>
+		
+			
+		
+			
+		
+			<li role="listitem"><a class="lia-link-navigation print-article lia-component-forums-action-print-thread" rel="nofollow" id="printThread" href="/t5/tkb/articleprintpage/tkb-id/TKB20/article-id/2">Printer Friendly Page</a></li>
+		
+			<li role="listitem"><a class="lia-link-navigation report-abuse-link lia-component-forums-action-report-abuse" rel="nofollow" id="reportAbuse" href="/t5/notifications/notifymoderatorpage/message-uid/89">Report Inappropriate Content</a></li>
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+	
+	
+
+
+	</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+		
+			
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-header-feedback">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-feedback">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			
+	
+
+	
+
+		
+			
+        
+        
+	
+
+	
+
+    
+		
+	
+	
+</div>
+		</div>
+	</div>
+</div>
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-main">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-main-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			
+            <div class="lia-message-helpfulness-display lia-component-helpfulness-display">
+                
+            </div>
+		
+		
+			
+			
+			<div data-lia-message-uid="89" class="lia-message-view-wrapper lia-js-data-messageUid-89 lia-component-article" id="messageview2">
+	<span id="U89"> </span>
+	<span id="M2"> </span>
+	
+	
+
+	
+
+	
+
+	
+		<div class="lia-inline-ajax-feedback">
+			<div class="AjaxFeedback" id="ajaxfeedback"></div>
+			
+	
+
+	
+
+		</div>
+
+	
+
+	
+		<div class="MessageView lia-message-view-tkb-message lia-message-view-display lia-row-standard-unread lia-thread-topic">
+			<span class="lia-message-state-indicator"></span>
+			<div class="lia-quilt lia-quilt-tkb-message lia-quilt-layout-custom-forum-message">
+	<div class="lia-quilt-row lia-quilt-row-message-header-main">
+		<div class="lia-quilt-column lia-quilt-column-18 lia-quilt-column-left lia-quilt-column-message-header-main-left">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-left">
+	
+		
+			
+					<div class="lia-message-author-avatar lia-component-author-avatar lia-component-message-view-widget-author-avatar"><div class="UserAvatar lia-user-avatar lia-component-common-widget-user-avatar">
+	
+			
+					<img class="lia-user-avatar-message" title="Anthony_E" alt="Anthony_E" id="imagedisplay" src="/t5/image/serverpage/image-id/36850i55EC8A5AE03A7655/image-dimensions/40x40/image-coordinates/0%2C0%2C400%2C400/constrain-image/false?v=v2"/>
+					
+				
+		
+</div></div>
+				
+		
+	
+	
+
+	
+		<div class="lia-message-author-with-avatar">
+			
+		
+			
+	
+
+	
+			<span class="UserName lia-user-name lia-user-rank-Community-Manager lia-component-message-view-widget-author-username">
+				
+		<img class="lia-user-rank-icon lia-user-rank-icon-left" title="Community Manager" alt="Community Manager" id="display_2" src="/i/rank_icons/admin.gif"/>
+		
+			<a class="lia-link-navigation lia-page-link lia-user-name-link" style="color:#6B7177" target="_self" aria-label="View Profile of Anthony_E" itemprop="url" id="link_4" href="https://community.fortinet.com/t5/user/viewprofilepage/user-id/5"><span class="login-bold">Anthony_E</span></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	
+			</span>
+		
+
+		
+			
+					
+		<div class="lia-message-author-rank lia-component-author-rank lia-component-message-view-widget-author-rank">
+			Community Manager
+		</div>
+	
+				
+		
+	
+		</div>
+	
+	
+
+	
+		
+			
+					
+		<p class="lia-message-dates lia-message-post-date lia-component-post-date-last-edited lia-component-message-view-widget-post-date-last-edited">
+			<span><span>Created on</span> <span class="DateTime lia-message-posted-on lia-component-common-widget-date">
+    
+
+	
+		
+		
+		<span class="local-date">‎11-15-2021</span>
+	
+		
+		<span class="local-time">02:08 AM</span>
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</span> </span> <span><span>Edited on</span> <span class="DateTime lia-message-edited-on lia-component-common-widget-date">
+    
+
+	
+		
+		
+		<span class="local-date">‎03-22-2022</span>
+	
+		
+		<span class="local-time">10:38 PM</span>
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</span> </span>
+		</p>
+	
+				
+		
+			<div class="custom-tkbArticle-id">
+  <span>
+  	<span>Article Id</span>
+  	<span class="tkbArticle-id">89</span>
+  </span>
+</div>
+		
+	
+	
+</div>
+		</div><div class="lia-quilt-column lia-quilt-column-06 lia-quilt-column-right lia-quilt-column-message-header-main-right lia-mark-empty">
+			
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-message-main">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-message-main-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			<div class="lia-message-subject lia-component-message-view-widget-subject">
+		<div class="MessageSubject">
+
+	
+
+	
+			<div class="MessageSubjectIcons ">
+	
+	
+	 
+	
+	
+	
+				
+		<h1 itemprop="name" class="message-subject">
+			<span class="lia-message-unread">
+				
+						<a class="page-link lia-link-navigation lia-custom-event" id="link_5" href="/t5/FortiGate/Technical-Tip-How-to-configure-Inter-VDOM-links/ta-p/89">
+							Technical Tip: How to configure Inter-VDOM links
+							
+						</a>
+					
+			</span>
+		</h1>
+	
+			
+	
+	<span class="lia-img-message-has-url lia-fa-message lia-fa-has lia-fa-url lia-fa" title="Contains a hyperlink" alt="Message contains a hyperlink" aria-label="Contains a hyperlink" role="img" id="display_3"></span>
+	
+	
+	
+</div>
+		
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+			
+					
+				
+		
+
+	
+</div>
+	</div>
+		
+			<div class="lia-message-body-wrapper lia-component-message-view-widget-body">
+		<div itemprop="text" id="bodyDisplay" class="lia-message-body">
+	
+		<div class="lia-message-body-content">
+			
+				
+					
+					
+						<TABLE width="100%" cellspacing="2px" cellpadding="2px">
+<TBODY>
+<TR>
+<TD width="25.380710659898476%" style="vertical-align: top; font-weight: bold;">Description</TD>
+<TD width="74.61928934010152%" style="vertical-align: top;"><FONT face="verdana,geneva">This article describes how to configure Inter-VDOM links.</FONT></TD>
+</TR>
+<TR>
+<TD width="25.380710659898476%" style="vertical-align: top; font-weight: bold;">Scope</TD>
+<TD width="74.61928934010152%" style="vertical-align: top;">&nbsp;</TD>
+</TR>
+<TR>
+<TD width="25.380710659898476%" style="vertical-align: top; font-weight: bold;">Solution</TD>
+<TD width="74.61928934010152%" style="vertical-align: top; height: 84px;">
+<P><FONT face="verdana,geneva">Refer to the video via the following link:</FONT></P>
+<P>&nbsp;</P>
+<P><FONT face="verdana,geneva"><A href="https://www.youtube.com/watch?v=mfJSk9OSpMc" target="_blank" rel="noopener nofollow noreferrer">https://www.youtube.com/watch?v=mfJSk9OSpMc</A></FONT></P>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+					
+				
+			
+			
+			
+				
+			
+			
+			
+			
+			
+			
+		</div>
+		
+		
+	
+
+	
+	
+</div>
+	</div>
+		
+			  <style>
+    .custom-internal-notes-data {
+      display: none !important;
+    }
+    .lia-form-custom-internal-notes-entry {
+      display: none !important;
+    }
+  </style>    
+
+		
+			
+					
+			
+		
+				
+		
+			
+		
+			
+					
+				
+		
+			
+		
+			
+					
+		
+	
+				
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-message-footer-top">
+		<div class="lia-quilt-column lia-quilt-column-18 lia-quilt-column-left lia-quilt-column-message-footer-top-left lia-mark-empty">
+			
+		</div><div class="lia-quilt-column lia-quilt-column-06 lia-quilt-column-right lia-quilt-column-message-footer-top-right lia-mark-empty">
+			
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-message-footer-main">
+		<div class="lia-quilt-column lia-quilt-column-10 lia-quilt-column-left lia-quilt-column-message-footer-main-left">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-left">
+	
+		
+			<div class="lia-message-VIEW_COUNT lia-component-message-widget-message-property-display lia-component-view-count lia-component-message-view-widget-view-count">
+  1579
+</div>
+		
+			
+					<div data-lia-kudos-id="89" id="kudosButtonV2" class="KudosButton lia-button-image-kudos-wrapper lia-component-kudos-widget-button-version-3 lia-component-kudos-widget-button-horizontal lia-component-kudos-widget-button lia-component-kudos-action lia-component-message-view-widget-kudos-action">
+	
+			<div class="lia-button-image-kudos lia-button-image-kudos-horizontal lia-button-image-kudos-enabled lia-button-image-kudos-not-kudoed lia-button-image-kudos-has-kudoes lia-button-image-kudos-has-kudos lia-button">
+				
+		
+			
+		
+			
+				<div class="lia-button-image-kudos-count">
+					<a class="lia-link-navigation kudos-count-link" title="Click here to see who gave kudos to this post." id="link_6" href="/t5/kudos/messagepage/board-id/TKB20/message-id/2/tab/all-users">
+						<span itemprop="upvoteCount" id="messageKudosCount_75acb0934329ac" class="MessageKudosCount lia-component-kudos-widget-message-kudos-count">
+	
+			1
+		
+</span><span class="lia-button-image-kudos-label lia-component-kudos-widget-kudos-count-label">
+	Kudo
+</span>
+					</a>
+				</div>
+			
+			
+		
+
+	
+		
+    	
+		<div class="lia-button-image-kudos-give">
+			<a onclick="return LITHIUM.EarlyEventCapture(this, 'click', true)" class="lia-link-navigation kudos-link lia-link-ticket-post-action" role="button" data-lia-kudos-entity-uid="89" aria-label="Click here to give kudos to this post." title="Click here to give kudos to this post." data-lia-action-token="02Vl4yhU7WhysdAHaBFtS9oawDi9ktRJk7sOD4PXkOY." rel="nofollow" id="kudoEntity" href="https://community.fortinet.com/t5/tkb/v2_4/articlepage.kudosbuttonv2.kudoentity:kudoentity/kudosable-gid/89?t:ac=blog-id/TKB20/article-id/2&amp;t:cp=kudos/contributions/tapletcontributionspage">
+				
+					
+				
+				
+			</a>
+		</div>
+	
+    
+			</div>
+		
+
+	
+
+	
+
+	
+
+    
+
+	
+
+	
+</div>
+				
+		
+	
+	
+</div>
+		</div><div class="lia-quilt-column lia-quilt-column-14 lia-quilt-column-right lia-quilt-column-message-footer-main-right">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-right">
+	
+		<div class="footer-top">
+			
+		
+			
+		
+			   <div class="lia-component-tkb-action-edit-article-button custom-report-content-btn">
+    <a href="/t5/forums/postpage/board-id/ideas" class="lia-button lia-button-primary edit-article">Submit Article Idea</a>
+   </div>
+
+		
+			
+		
+			
+            
+        
+		
+			
+					
+		<div class="lia-button-group lia-component-comment-button lia-component-message-view-widget-comment-button">
+	
+			
+		
+</div>
+	
+				
+		
+	
+		</div>
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-message-moderation">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-message-moderation-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single lia-mark-empty">
+	
+		
+			
+					
+		
+	
+				
+		
+			
+					
+		
+	
+				
+		
+	
+	
+</div>
+		</div>
+	</div>
+</div>
+		</div>
+	
+
+	
+
+	
+
+
+</div>
+		
+		
+			
+			
+		
+		
+			
+            <a name="comments"> </a>
+            
+			<a class="lia-component-comments" name="comment-on-this"></a>
+            
+		
+		
+			
+		
+			<div class="ContributorsTaplet lia-component-tkb-widget-contributors-taplet" id="contributorsTaplet">
+	<div class="lia-panel lia-panel-standard">
+	<div class="lia-decoration-border">
+		<div class="lia-decoration-border-top"><div> </div></div>
+		<div class="lia-decoration-border-content">
+			<div>
+				
+					<div class="lia-panel-heading-bar-wrapper">
+						<div class="lia-panel-heading-bar">
+							<span aria-level="3" role="heading" class="lia-panel-heading-bar-title">
+								
+			Contributors
+		
+							</span>
+						</div>
+					</div>
+				
+				<div class="lia-panel-content-wrapper">
+					<div class="lia-panel-content">
+						
+			
+					
+					<ul role="list" id="list_1" class="lia-list-standard">
+	
+						<li class="contributing-user">
+							<div class="UserProfileSummary lia-user-item lia-js-data-userId-5 lia-user-info-group">
+	
+
+	
+
+	
+
+	
+
+	
+			
+		<div class="UserAvatar lia-user-avatar lia-component-common-widget-user-avatar">
+	
+			
+				<a class="UserAvatar lia-link-navigation" tabindex="-1" target="_self" id="link_7" href="/t5/user/viewprofilepage/user-id/5"><img class="lia-user-avatar-message" title="Anthony_E" alt="Anthony_E" id="display_4" src="/t5/image/serverpage/image-id/36850i55EC8A5AE03A7655/image-dimensions/40x40/image-coordinates/0%2C0%2C400%2C400?v=v2"/>
+					
+				</a>
+				
+			
+		
+</div>
+	
+		
+
+	<div class="lia-user-attributes">
+		
+			
+		<div class="lia-user-name">
+			
+	
+
+	
+			<span class="UserName lia-user-name lia-user-rank-Community-Manager">
+				
+		
+		
+			<a class="lia-link-navigation lia-page-link lia-user-name-link" style="color:#6B7177" target="_self" aria-label="View Profile of Anthony_E" itemprop="url" id="link_8" href="https://community.fortinet.com/t5/user/viewprofilepage/user-id/5"><span class="login-bold">Anthony_E</span></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	
+			</span>
+		
+
+		</div>
+	
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+	</div>
+</div>
+						</li><li class="contributing-user">
+							<div class="UserProfileSummary lia-user-item lia-js-data-userId-6 lia-user-info-group">
+	
+
+	
+
+	
+
+	
+
+	
+			
+		<div class="UserAvatar lia-user-avatar lia-component-common-widget-user-avatar">
+	
+			
+				<span class="UserAvatar lia-link-navigation lia-link-disabled" aria-disabled="true" tabindex="-1" target="_self" id="link_9"><img class="lia-img-icon-anonymous-message lia-fa-icon lia-fa-anonymous lia-fa-message lia-user-avatar-message" alt="" aria-label="Anonymous User" id="display_5" src="/skins/images/17E386618A56D760E9CC7612F1E594DD/responsive_peak/images/icon_anonymous_message.png"/>
+					
+				</span>
+				
+			
+		
+</div>
+	
+		
+
+	<div class="lia-user-attributes">
+		
+			
+		<div class="lia-user-name">
+			
+	
+
+	
+			<span class="UserName lia-user-name lia-user-rank-">
+				
+		
+		
+			<span class="lia-link-navigation lia-link-disabled lia-user-name-link" style="" target="_self" aria-disabled="true" id="link_10"><span class="user-deleted">Anonymous</span></span>
+		
+		
+		
+		
+		
+		
+		
+		
+	
+			</span>
+		
+
+		</div>
+	
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+	</div>
+</div>
+						</li>
+					
+</ul>
+				
+		
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="lia-decoration-border-bottom"><div> </div></div>
+	</div>
+</div>
+</div>
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-footer">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-common-footer">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			<div class="lia-quilt lia-quilt-footer lia-quilt-layout-custom-community-footer lia-component-quilt-footer">
+	<div class="lia-quilt-row lia-quilt-row-footer-top">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-footer-top-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single lia-mark-empty">
+	
+		
+			
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-footer-main">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-footer-main-content">
+			<div class="lia-quilt-column-alley lia-quilt-column-alley-single">
+	
+		
+			<section class="footer footer__v2"> <div class="footer__v2--container"> <div class="footer__v2--main"> <div class="footer__v2--about"> <div class="footer__v2--logo"> <a target="_blank" href="https://www.fortinet.com/"> <img src="/html/assets/logo_v2.png" alt="fortinet" width="316" height="23" /> </a> </div> <div class="footer-about-content"> <span>Broad. Integrated. Automated.</span> <p>The Fortinet Security Fabric brings together the concepts of convergence and consolidation to provide comprehensive cybersecurity protection for all users, devices, and applications and across all network edges.</p> </div> <div class="footer-social"> <span>Social Media</span> <ul> <li> <a target="_blank" href="https://www.facebook.com/fortinet" aria-label="facebook"> <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M16.1538 0.341797H3.84615C2.82609 0.341797 1.84781 0.747015 1.12651 1.46831C0.405219 2.1896 0 3.16789 0 4.18795V16.4956C0 17.5157 0.405219 18.494 1.12651 19.2153C1.84781 19.9366 2.82609 20.3418 3.84615 20.3418H10C10.204 20.3418 10.3997 20.2608 10.5439 20.1165C10.6882 19.9722 10.7692 19.7766 10.7692 19.5726V13.4187C10.7692 13.2147 10.6882 13.019 10.5439 12.8748C10.3997 12.7305 10.204 12.6495 10 12.6495H9.23077V11.111H10C10.204 11.111 10.3997 11.03 10.5439 10.8857C10.6882 10.7415 10.7692 10.5458 10.7692 10.3418V7.64949C10.7692 7.13946 10.9718 6.65032 11.3325 6.28967C11.6931 5.92902 12.1823 5.72641 12.6923 5.72641H14.6154V7.26487H13.8462C13.4381 7.26487 13.0468 7.42696 12.7583 7.71548C12.4698 8.004 12.3077 8.39531 12.3077 8.80334V10.3418C12.3077 10.5458 12.3887 10.7415 12.533 10.8857C12.6773 11.03 12.8729 11.111 13.0769 11.111H14.4L14.0154 12.6495H13.0769C12.8729 12.6495 12.6773 12.7305 12.533 12.8748C12.3887 13.019 12.3077 13.2147 12.3077 13.4187V16.4956C12.3077 16.6997 12.3887 16.8953 12.533 17.0396C12.6773 17.1838 12.8729 17.2649 13.0769 17.2649C13.2809 17.2649 13.4766 17.1838 13.6209 17.0396C13.7651 16.8953 13.8462 16.6997 13.8462 16.4956V14.188H14.6154C14.7911 14.1931 14.9633 14.1378 15.1032 14.0315C15.2432 13.9251 15.3425 13.774 15.3846 13.6033L16.1538 10.5264C16.1827 10.4129 16.1852 10.2943 16.1612 10.1796C16.1372 10.065 16.0873 9.95732 16.0154 9.86487C15.9406 9.77005 15.8445 9.69418 15.7349 9.6434C15.6253 9.59261 15.5053 9.56835 15.3846 9.57257H13.8462V8.80334H15.3846C15.5886 8.80334 15.7843 8.72229 15.9285 8.57803C16.0728 8.43377 16.1538 8.23812 16.1538 8.0341V4.95718C16.1538 4.75317 16.0728 4.55751 15.9285 4.41325C15.7843 4.26899 15.5886 4.18795 15.3846 4.18795H12.6923C11.7749 4.18998 10.8956 4.55533 10.2469 5.20406C9.59815 5.85278 9.2328 6.73206 9.23077 7.64949V9.57257H8.46154C8.25753 9.57257 8.06187 9.65361 7.91761 9.79787C7.77335 9.94213 7.69231 10.1378 7.69231 10.3418V13.4187C7.69231 13.6227 7.77335 13.8184 7.91761 13.9626C8.06187 14.1069 8.25753 14.188 8.46154 14.188H9.23077V18.8033H3.84615C3.23412 18.8033 2.64715 18.5602 2.21437 18.1274C1.78159 17.6947 1.53846 17.1077 1.53846 16.4956V4.18795C1.53846 3.57591 1.78159 2.98894 2.21437 2.55617C2.64715 2.12339 3.23412 1.88026 3.84615 1.88026H16.1538C16.7659 1.88026 17.3529 2.12339 17.7856 2.55617C18.2184 2.98894 18.4615 3.57591 18.4615 4.18795V16.4956C18.4615 17.1077 18.2184 17.6947 17.7856 18.1274C17.3529 18.5602 16.7659 18.8033 16.1538 18.8033H13.0769C12.8729 18.8033 12.6773 18.8844 12.533 19.0286C12.3887 19.1729 12.3077 19.3686 12.3077 19.5726C12.3077 19.7766 12.3887 19.9722 12.533 20.1165C12.6773 20.2608 12.8729 20.3418 13.0769 20.3418H16.1538C17.1739 20.3418 18.1522 19.9366 18.8735 19.2153C19.5948 18.494 20 17.5157 20 16.4956V4.18795C20 3.16789 19.5948 2.1896 18.8735 1.46831C18.1522 0.747015 17.1739 0.341797 16.1538 0.341797Z"/> </svg> </a> </li> <li> <a target="_blank" href="https://twitter.com/fortinet" aria-label="twitter"> <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M23.3043 3.29432C23.2473 3.22372 23.1783 3.16373 23.1005 3.11712C23.2982 2.73598 23.4357 2.32649 23.5081 1.90324C23.536 1.73365 23.514 1.55959 23.4448 1.40227C23.3756 1.24495 23.2621 1.11116 23.1182 1.01719C22.9735 0.92192 22.8041 0.871143 22.6309 0.871143C22.4577 0.871143 22.2882 0.92192 22.1436 1.01719C21.529 1.41652 20.843 1.69332 20.1234 1.83235C19.2965 1.05619 18.25 0.554484 17.1271 0.395879C16.0042 0.237273 14.8597 0.429519 13.8502 0.946311C12.7965 1.49792 11.9553 2.38326 11.4583 3.46382C10.9613 4.54438 10.8365 5.75921 11.1035 6.91824C11.1505 7.15323 11.2889 7.35993 11.4883 7.49287C11.6877 7.6258 11.9317 7.67408 12.1667 7.62708C12.4017 7.58008 12.6084 7.44165 12.7413 7.24225C12.8743 7.04286 12.9225 6.79882 12.8755 6.56382C12.692 5.79433 12.766 4.9859 13.0861 4.26248C13.4062 3.53907 13.9548 2.94062 14.6476 2.55891C15.3944 2.17984 16.2464 2.06114 17.0683 2.22167C17.8902 2.38221 18.6349 2.81276 19.1842 3.44495C19.2846 3.54593 19.4079 3.62121 19.5437 3.66439C19.6794 3.70758 19.8236 3.71741 19.9639 3.69304H20.1854C20.0849 3.79711 20.0114 3.92421 19.9713 4.06324C19.9313 4.20227 19.9258 4.34899 19.9556 4.49059C19.9853 4.63219 20.0492 4.76436 20.1418 4.87555C20.2344 4.98673 20.3528 5.07356 20.4867 5.12843C20.373 5.22172 20.2843 5.34184 20.2286 5.47796C20.1729 5.61408 20.152 5.76192 20.1677 5.90815C20.3147 7.79589 19.9966 9.69088 19.2412 11.4271C18.4858 13.1634 17.3163 14.688 15.8349 15.8673C14.3156 17.171 12.4771 18.0475 10.5076 18.4072C8.53819 18.7668 6.50854 18.5966 4.62648 17.914C6.12296 17.6633 7.51774 16.9936 8.64912 15.9825C8.76328 15.8521 8.83671 15.6911 8.86034 15.5195C8.88396 15.3478 8.85673 15.173 8.78202 15.0167C8.70831 14.8618 8.59121 14.7316 8.44494 14.6419C8.29866 14.5523 8.1295 14.507 7.958 14.5116C7.45275 14.5077 6.95418 14.3957 6.49573 14.1833C6.03728 13.9709 5.62955 13.6629 5.29987 13.28C5.6088 13.2205 5.90733 13.1161 6.18592 12.9699C6.35251 12.888 6.48917 12.7559 6.57661 12.5921C6.66405 12.4284 6.69785 12.2413 6.67324 12.0573C6.64942 11.8797 6.57231 11.7135 6.45209 11.5806C6.33187 11.4477 6.17419 11.3544 5.99985 11.313C5.41846 11.1739 4.87663 10.9036 4.41588 10.5227C3.95513 10.1418 3.58769 9.66048 3.34172 9.11563C3.55437 9.11563 3.76702 9.15993 3.99739 9.16879C4.18419 9.18263 4.37056 9.13692 4.52976 9.03822C4.68895 8.93952 4.81277 8.79291 4.88343 8.61944C4.94673 8.44603 4.95429 8.25718 4.90504 8.07927C4.8558 7.90135 4.75222 7.74326 4.60876 7.62708C3.12907 6.28029 2.76579 4.83604 2.97844 3.81709C4.64967 5.58612 6.80818 6.81956 9.18074 7.36126C9.2971 7.38337 9.41667 7.38234 9.53263 7.35824C9.64859 7.33414 9.75867 7.28743 9.85658 7.22079C9.95449 7.15414 10.0383 7.06887 10.1033 6.96983C10.1682 6.87079 10.213 6.75993 10.2351 6.64357C10.2572 6.52721 10.2562 6.40764 10.2321 6.29168C10.208 6.17572 10.1613 6.06564 10.0947 5.96773C10.028 5.86982 9.94274 5.786 9.8437 5.72105C9.74466 5.65609 9.6338 5.61128 9.51744 5.58918C7.11566 5.02641 4.98142 3.65261 3.47462 1.69945C3.39494 1.59845 3.29422 1.51601 3.17946 1.45787C3.0647 1.39972 2.93866 1.36726 2.81009 1.36275C2.68052 1.35795 2.55147 1.38165 2.43205 1.43217C2.31264 1.48269 2.20576 1.55881 2.11898 1.65515C1.54513 2.41144 1.21206 3.32288 1.16308 4.27098C1.11409 5.21908 1.35145 6.15999 1.8443 6.9714H1.76456C1.63359 7.04261 1.5227 7.14572 1.44216 7.27117C1.36162 7.39662 1.31404 7.54037 1.30382 7.6891C1.28937 8.43478 1.43628 9.17478 1.7345 9.85839C2.03272 10.542 2.47519 11.1531 3.0316 11.6497C2.92828 11.7697 2.85899 11.9151 2.83094 12.071C2.80289 12.2268 2.81711 12.3873 2.87211 12.5358C3.38524 13.9039 4.38982 15.0317 5.68973 15.6989C4.30464 16.2202 2.8369 16.4873 1.35698 16.4875C1.16361 16.4895 0.9762 16.5547 0.823338 16.6731C0.670476 16.7915 0.560559 16.9567 0.510358 17.1435C0.460157 17.3302 0.472429 17.5283 0.545301 17.7074C0.618173 17.8865 0.747644 18.0369 0.913959 18.1355C3.18258 19.5298 5.78298 20.2916 8.44533 20.3418C11.5618 20.3061 14.5688 19.1879 16.9513 17.1786C18.5964 15.8687 19.91 14.19 20.7859 12.2782C21.6617 10.3664 22.0752 8.27523 21.9929 6.17397C22.6642 5.67206 23.1652 4.97618 23.4283 4.18037C23.4881 4.03496 23.5081 3.87625 23.4863 3.72054C23.4645 3.56483 23.4017 3.41773 23.3043 3.29432Z"/> </svg> </a> </li> <li> <a target="_blank" href="https://www.youtube.com/channel/UCJHo4AuVomwMRzgkA5DQEOA" aria-label="youtube"> <svg width="30" height="21" viewBox="0 0 30 21" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M27.2898 2.35135C28.2647 3.39788 28.8063 4.77529 28.8053 6.20557C29.2104 9.0932 29.2104 12.0232 28.8053 14.9109C28.7845 16.2964 28.2202 17.6183 27.2339 18.5917C26.2476 19.565 24.9184 20.1118 23.5327 20.1143C20.6968 20.266 17.8379 20.3418 14.956 20.3418C12.074 20.3418 9.19859 20.2627 6.3298 20.1044C4.93918 20.0939 3.60923 19.5335 2.63054 18.5455C1.65184 17.5576 1.10396 16.2224 1.10662 14.8317C0.818953 11.9635 0.818953 9.07377 1.10662 6.20557C1.10662 3.23786 3.58961 0.547128 6.37926 0.547128C12.0476 0.270141 17.8445 0.270141 23.5524 0.566913C24.9792 0.667107 26.3148 1.30483 27.2898 2.35135ZM26.8268 14.8614C26.822 14.822 26.822 14.7821 26.8268 14.7427V14.7229C27.2142 11.9699 27.2142 9.17622 26.8268 6.42321C26.8219 6.37387 26.8219 6.32416 26.8268 6.27482C26.8268 4.3458 25.2243 2.5256 23.5327 2.5256H23.4832C20.654 2.397 17.805 2.33765 14.956 2.33765C12.107 2.33765 9.25795 2.397 6.42872 2.5256C5.50537 2.62383 4.65159 3.0621 4.03355 3.75511C3.41551 4.44812 3.07743 5.34629 3.08509 6.27482C3.08954 6.31096 3.08954 6.3475 3.08509 6.38364C2.80275 9.16945 2.80275 11.9767 3.08509 14.7625C3.07458 15.2031 3.15181 15.6414 3.31228 16.0519C3.47275 16.4624 3.71326 16.8369 4.01981 17.1536C4.32636 17.4702 4.69283 17.7228 5.09789 17.8965C5.50296 18.0702 5.93853 18.1617 6.37926 18.1655C12.0734 18.4622 17.7792 18.4622 23.4733 18.1655C23.9106 18.1694 24.3444 18.087 24.7498 17.9229C25.1552 17.7589 25.5243 17.5164 25.8358 17.2095C26.1474 16.9025 26.3953 16.5371 26.5653 16.1342C26.7354 15.7313 26.8242 15.2987 26.8268 14.8614ZM12.6313 6.03739L19.6944 9.67779C19.8502 9.7653 19.9793 9.89337 20.0682 10.0484C20.157 10.2034 20.2022 10.3796 20.1989 10.5582C20.1993 10.7399 20.1497 10.9181 20.0554 11.0734C19.9612 11.2287 19.826 11.3551 19.6647 11.4386L12.6016 15.1186C12.4608 15.1907 12.3047 15.2281 12.1465 15.2274C11.8842 15.2274 11.6325 15.1232 11.447 14.9377C11.2615 14.7522 11.1573 14.5005 11.1573 14.2382V10.5582C11.1573 10.2958 11.2615 10.0442 11.447 9.85871C11.6325 9.67319 11.8842 9.56897 12.1465 9.56897C12.4089 9.56897 12.6605 9.67319 12.846 9.85871C13.0315 10.0442 13.1358 10.2958 13.1358 10.5582V12.6059L17.0927 10.5582L11.7212 7.79823C11.6055 7.73848 11.5028 7.65653 11.4189 7.55708C11.3349 7.45762 11.2714 7.34261 11.2319 7.2186C11.1924 7.09459 11.1777 6.96401 11.1887 6.83432C11.1996 6.70464 11.236 6.57838 11.2958 6.46276C11.3555 6.34714 11.4375 6.24443 11.5369 6.16048C11.6364 6.07653 11.7514 6.01299 11.8754 5.97349C11.9994 5.93399 12.13 5.9193 12.2597 5.93027C12.3894 5.94123 12.5156 5.97763 12.6313 6.03739Z"/> </svg> </a> </li> <li> <a target="_blank" href="https://www.linkedin.com/company/fortinet" aria-label="linkedin"> <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M3.69084 0.341797C3.15836 0.341797 2.63783 0.499698 2.19508 0.795533C1.75233 1.09137 1.40725 1.51185 1.20348 2.0038C0.999702 2.49576 0.946385 3.03709 1.05027 3.55935C1.15415 4.0816 1.41057 4.56133 1.7871 4.93785C2.16362 5.31438 2.64334 5.5708 3.1656 5.67468C3.68786 5.77856 4.22919 5.72525 4.72115 5.52147C5.2131 5.3177 5.63358 4.97262 5.92942 4.52987C6.22525 4.08712 6.38315 3.56659 6.38315 3.0341C6.38315 2.32006 6.0995 1.63526 5.59459 1.13036C5.08969 0.62545 4.40489 0.341797 3.69084 0.341797ZM3.69084 4.18795C3.46264 4.18795 3.23955 4.12028 3.0498 3.99349C2.86005 3.86671 2.71216 3.6865 2.62483 3.47566C2.5375 3.26482 2.51465 3.03282 2.55917 2.809C2.60369 2.58518 2.71358 2.37958 2.87495 2.21821C3.03632 2.05684 3.24192 1.94695 3.46574 1.90243C3.68956 1.85791 3.92156 1.88076 4.1324 1.96809C4.34324 2.05542 4.52345 2.20331 4.65023 2.39306C4.77702 2.58281 4.84469 2.8059 4.84469 3.0341C4.84469 3.34012 4.72312 3.63361 4.50674 3.85C4.29035 4.06639 3.99686 4.18795 3.69084 4.18795ZM5.61392 6.49564H1.76777C1.56375 6.49564 1.3681 6.57669 1.22384 6.72095C1.07958 6.8652 0.998536 7.06086 0.998536 7.26487C0.998536 7.46889 1.07958 7.66454 1.22384 7.8088C1.3681 7.95306 1.56375 8.0341 1.76777 8.0341H4.84469V18.8033H2.537V10.3418C2.537 10.1378 2.45595 9.94213 2.3117 9.79787C2.16744 9.65361 1.97178 9.57257 1.76777 9.57257C1.56375 9.57257 1.3681 9.65361 1.22384 9.79787C1.07958 9.94213 0.998536 10.1378 0.998536 10.3418V19.5726C0.998536 19.7766 1.07958 19.9722 1.22384 20.1165C1.3681 20.2608 1.56375 20.3418 1.76777 20.3418H5.61392C5.81793 20.3418 6.01359 20.2608 6.15785 20.1165C6.30211 19.9722 6.38315 19.7766 6.38315 19.5726V7.26487C6.38315 7.06086 6.30211 6.8652 6.15785 6.72095C6.01359 6.57669 5.81793 6.49564 5.61392 6.49564ZM19.7216 7.78795C19.2808 7.35891 18.7579 7.0233 18.1842 6.80124C17.6105 6.57918 16.998 6.47523 16.3832 6.49564H15.6139C14.5457 6.44703 13.4838 6.68331 12.537 7.18026C12.5161 6.99124 12.4259 6.81668 12.2838 6.69025C12.1418 6.56382 11.9579 6.49449 11.7678 6.49564H7.92161C7.7176 6.49564 7.52194 6.57669 7.37769 6.72095C7.23343 6.8652 7.15238 7.06086 7.15238 7.26487V19.5726C7.15238 19.7766 7.23343 19.9722 7.37769 20.1165C7.52194 20.2608 7.7176 20.3418 7.92161 20.3418H11.7678C11.9718 20.3418 12.1674 20.2608 12.3117 20.1165C12.456 19.9722 12.537 19.7766 12.537 19.5726V12.6495C12.537 12.2415 12.6991 11.8502 12.9876 11.5616C13.2761 11.2731 13.6674 11.111 14.0755 11.111C14.4835 11.111 14.8748 11.2731 15.1633 11.5616C15.4518 11.8502 15.6139 12.2415 15.6139 12.6495V19.5726C15.6139 19.7766 15.695 19.9722 15.8392 20.1165C15.9835 20.2608 16.1791 20.3418 16.3832 20.3418H20.2293C20.4333 20.3418 20.629 20.2608 20.7732 20.1165C20.9175 19.9722 20.9985 19.7766 20.9985 19.5726V11.111C21.0207 10.4997 20.9189 9.89012 20.6995 9.31906C20.4801 8.748 20.1474 8.2272 19.7216 7.78795ZM19.4601 18.8033H17.1524V12.6495C17.1524 11.8334 16.8282 11.0508 16.2512 10.4738C15.6741 9.89674 14.8915 9.57257 14.0755 9.57257C13.2594 9.57257 12.4768 9.89674 11.8997 10.4738C11.3227 11.0508 10.9985 11.8334 10.9985 12.6495V18.8033H8.69084V8.0341H10.9985V8.80334C10.9993 8.9552 11.045 9.10344 11.1299 9.22938C11.2147 9.35532 11.335 9.45332 11.4755 9.51103C11.6155 9.56993 11.7699 9.58603 11.9192 9.55728C12.0684 9.52853 12.2057 9.45623 12.3139 9.34949C13.0447 8.58026 13.6216 8.0341 15.6139 8.0341H16.3832C16.7946 8.01643 17.2054 8.08154 17.5913 8.22556C17.9771 8.36959 18.3301 8.5896 18.6293 8.87257C18.9099 9.17151 19.128 9.52352 19.2707 9.90793C19.4133 10.2923 19.4777 10.7014 19.4601 11.111V18.8033Z"/> </svg> </a> </li> <li> <a target="_blank" href="https://www.instagram.com/fortinet/" aria-label="instagram"> <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5663 1.81957C19.3092 2.57768 19.7253 3.5969 19.725 4.65836C20.0332 8.4581 20.0332 12.2766 19.725 16.0763C19.7082 17.1334 19.2791 18.1421 18.5293 18.8874C17.7794 19.6327 16.7681 20.0556 15.7109 20.0661C13.8134 20.2526 11.9158 20.3418 9.99386 20.3418C8.07195 20.3418 6.15004 20.2445 4.23624 20.0661C3.17499 20.0448 2.16438 19.6083 1.42144 18.8502C0.678491 18.0921 0.262454 17.0729 0.262667 16.0114C-0.0292873 12.211 -0.0292873 8.39386 0.262667 4.59348C0.279694 3.5294 0.714386 2.51467 1.47295 1.76825C2.2315 1.02183 3.25311 0.603559 4.31733 0.603695C8.12072 0.254497 11.9481 0.254497 15.7515 0.603695C16.8127 0.624924 17.8233 1.06146 18.5663 1.81957ZM17.3906 17.7317C17.8469 17.2754 18.1032 16.6566 18.1032 16.0114C18.4113 12.255 18.4113 8.47965 18.1032 4.72323C18.1119 4.39834 18.0553 4.075 17.937 3.77231C17.8186 3.46962 17.6408 3.19371 17.414 2.96089C17.1872 2.72807 16.9161 2.54305 16.6166 2.41675C16.3171 2.29045 15.9954 2.22544 15.6704 2.22556C13.7512 2.04716 11.8563 1.96066 9.98575 1.96606C8.1152 1.97147 6.25005 2.05797 4.39031 2.22556C4.06475 2.21579 3.74053 2.27149 3.43689 2.38937C3.13326 2.50725 2.85638 2.6849 2.62269 2.91178C2.389 3.13867 2.20324 3.41017 2.07644 3.71019C1.94965 4.01022 1.88439 4.33264 1.88453 4.65836C1.6007 8.41573 1.6007 12.1892 1.88453 15.9465C1.87586 16.2714 1.93239 16.5948 2.05076 16.8975C2.16913 17.2002 2.34696 17.4761 2.57373 17.7089C2.80051 17.9417 3.07164 18.1267 3.37111 18.253C3.67058 18.3793 3.99232 18.4443 4.31733 18.4442C8.06579 18.8091 11.8408 18.8091 15.5893 18.4442H15.6704C16.3156 18.4442 16.9344 18.1879 17.3906 17.7317ZM15.6704 5.46936C16.1183 5.46936 16.4813 5.1063 16.4813 4.65843C16.4813 4.21056 16.1183 3.8475 15.6704 3.8475C15.2225 3.8475 14.8595 4.21056 14.8595 4.65843C14.8595 5.1063 15.2225 5.46936 15.6704 5.46936ZM13.6025 8.16149C13.5027 8.20003 13.4115 8.25794 13.3342 8.33189C13.2568 8.40584 13.1949 8.49436 13.1519 8.59236C13.1089 8.69035 13.0858 8.79588 13.0838 8.90287C13.0818 9.00985 13.101 9.11617 13.1403 9.2157C13.4075 9.90893 13.4286 10.6729 13.2001 11.3798C12.9717 12.0868 12.5074 12.6938 11.8851 13.0996C11.2627 13.5053 10.5199 13.6851 9.78088 13.6089C9.04185 13.5327 8.35139 13.2051 7.82491 12.6809C7.29843 12.1567 6.96785 11.4677 6.88844 10.729C6.80903 9.9903 6.9856 9.24674 7.38864 8.62262C7.79167 7.9985 8.39673 7.53164 9.10267 7.3001C9.80861 7.06856 10.5726 7.08637 11.267 7.35056C11.4681 7.42691 11.6913 7.42025 11.8875 7.33204C12.0837 7.24383 12.2368 7.08131 12.3131 6.88021C12.3895 6.67912 12.3828 6.45594 12.2946 6.25975C12.2064 6.06357 12.0439 5.91046 11.8428 5.83411C10.8025 5.4406 9.65873 5.41539 8.60208 5.76269C7.54543 6.10999 6.63967 6.80883 6.03567 7.7428C5.43167 8.67677 5.1659 9.78949 5.28262 10.8956C5.39934 12.0017 5.89151 13.0345 6.67715 13.8218C7.58945 14.733 8.82612 15.2448 10.1155 15.2448C11.4049 15.2448 12.6416 14.733 13.5539 13.8218C14.2219 13.1556 14.6817 12.3095 14.8776 11.3866C15.0734 10.4637 14.9966 9.5038 14.6567 8.62372C14.6182 8.5239 14.5603 8.43269 14.4863 8.35536C14.4124 8.27802 14.3239 8.21609 14.2259 8.17312C14.1279 8.13015 14.0223 8.107 13.9153 8.10501C13.8084 8.10301 13.702 8.12221 13.6025 8.16149Z"/> </svg> </a> </li> <li> <a target="_blank" href="https://www.fortinet.com/rss-feeds" aria-label="rrs-feeds"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M0.866116 1.20791C1.10054 0.973493 1.41848 0.841797 1.75 0.841797C3.55568 0.841797 5.34367 1.19745 7.0119 1.88845C8.68012 2.57946 10.1959 3.59227 11.4727 4.86908C12.7495 6.14588 13.7623 7.66167 14.4533 9.3299C15.1443 10.9981 15.5 12.7861 15.5 14.5918C15.5 14.9233 15.3683 15.2413 15.1339 15.4757C14.8995 15.7101 14.5815 15.8418 14.25 15.8418C13.9185 15.8418 13.6005 15.7101 13.3661 15.4757C13.1317 15.2413 13 14.9233 13 14.5918C13 11.6081 11.8147 8.74663 9.70495 6.63685C7.59517 4.52706 4.73369 3.3418 1.75 3.3418C1.41848 3.3418 1.10054 3.2101 0.866116 2.97568C0.631696 2.74126 0.5 2.42332 0.5 2.0918C0.5 1.76028 0.631696 1.44233 0.866116 1.20791ZM1.75 5.8418C1.41848 5.8418 1.10054 5.97349 0.866116 6.20791C0.631696 6.44233 0.5 6.76028 0.5 7.0918C0.5 7.42332 0.631696 7.74126 0.866116 7.97568C1.10054 8.2101 1.41848 8.3418 1.75 8.3418C3.4076 8.3418 4.99731 9.00028 6.16942 10.1724C7.34152 11.3445 8 12.9342 8 14.5918C8 14.9233 8.1317 15.2413 8.36612 15.4757C8.60054 15.7101 8.91848 15.8418 9.25 15.8418C9.58152 15.8418 9.89946 15.7101 10.1339 15.4757C10.3683 15.2413 10.5 14.9233 10.5 14.5918C10.5 12.2712 9.57813 10.0456 7.93718 8.40461C6.29624 6.76367 4.07064 5.8418 1.75 5.8418ZM1.75 10.8418C1.41848 10.8418 1.10054 10.9735 0.866116 11.2079C0.631696 11.4423 0.5 11.7603 0.5 12.0918C0.5 12.4233 0.631696 12.7413 0.866116 12.9757C1.10054 13.2101 1.41848 13.3418 1.75 13.3418C2.08152 13.3418 2.39946 13.4735 2.63388 13.7079C2.8683 13.9423 3 14.2603 3 14.5918C3 14.9233 3.1317 15.2413 3.36612 15.4757C3.60054 15.7101 3.91848 15.8418 4.25 15.8418C4.58152 15.8418 4.89946 15.7101 5.13388 15.4757C5.3683 15.2413 5.5 14.9233 5.5 14.5918C5.5 13.5972 5.10491 12.6434 4.40165 11.9401C3.69839 11.2369 2.74456 10.8418 1.75 10.8418Z"/> </svg> </a> </li> </ul> </div> </div> <div class="footer-links"> <span>Security Research</span> <ul> <li><a target="_blank" href="https://www.fortinet.com/fortiguard/labs">Threat Research</a></li> <li><a target="_blank" href="https://www.fortiguard.com/">FortiGuard Labs</a></li> <li><a target="_blank" href="https://www.fortinet.com/fortiguard/threat-intelligence/threat-map">Threat Map</a></li> <li><a target="_blank" href="https://secure.fortinet.com/FortiGuard">Threat Briefs</a></li> <li><a target="_blank" href="https://www.fortinet.com/solutions/small-business/stop-ransomware-phishing">Ransomware</a></li> <li><a target="_blank" href="http://fortinet.com/welcome">Getting Started Resources</a></li> </ul> </div> <div class="footer-links"> <span>Company</span> <ul> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/about-us">About Us</a></li> <li><a target="_blank" href="https://www.fortinet.com/solutions/enterprise-midsize-business/security-fabric">Security Fabric</a></li> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/executive-management">Exec. Mgmt</a></li> <li><a target="_blank" href="https://www.fortinet.com/corporate/careers">Careers</a></li> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/product-certifications">Certifications</a></li> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/events">Events</a></li> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/industry-awards">Industry Awards</a></li> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/corporate-social-responsibility">Social Responsibility</a></li> </ul> </div> <div class="footer-links"> <div class="footer-links--inner"> <span>News & Articles</span> <ul> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/newsroom/press-releases">News Releases</a></li> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/newsroom/news">News Articles</a></li> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/contact-us/fortinet-trademark-guidelines">Trademarks</a></li> </ul> </div> <div class="footer-links--inner"> <span>Contact Us</span> <ul> <li><a target="_blank" href="https://www.fortinet.com/corporate/about-us/contact-us">Corporate</a></li> <li><a href="https://community.fortinet.com/">Community</a></li> </ul> </div> </div> </div> </div></section>
+<div class="footer__v2--copyright">
+		<div class="footer__v2--container">
+			<p>Copyright  2024 Fortinet, Inc. All Rights Reserved.</p>
+			<ul>
+				<li>
+					<a href="https://community.fortinet.com/t5/custom/page/page-id/terms-of-service">Terms of Service</a>
+				</li>
+				<li>
+					<a href="https://www.fortinet.com/corporate/about-us/privacy">Privacy Policy</a>
+				</li>
+				<li>
+					<a href="https://www.fortinet.com/corporate/about-us/gdpr">GDPR</a>
+				</li>
+				<li>
+					<a href="#" onclick="Optanon?.ToggleInfoDisplay()">Cookie Settings</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+		
+	
+	
+</div>
+		</div>
+	</div><div class="lia-quilt-row lia-quilt-row-footer-bottom">
+		<div class="lia-quilt-column lia-quilt-column-24 lia-quilt-column-single lia-quilt-column-footer-bottom-content lia-mark-empty">
+			
+		</div>
+	</div>
+</div>
+		
+	
+	
+</div>
+		</div>
+	</div>
+</div>
+	
+
+	
+						</div>
+					
+			</div>								
+		</div>
+	</div>
+
+				
+			
+		</center>
+	</div>
+	
+	<a class="lia-link-navigation lia-value-survey-link lia-panel-dialog-trigger lia-panel-dialog-trigger-event-click lia-js-data-dialogKey--1641838492" tabindex="-1" aria-hidden="true" id="valueSurveyLauncher" href="#"></a>
+	
+	
+	
+	
+	<script type="text/javascript">
+	new Image().src = ["/","b","e","a","c","o","n","/","4","1","5","6","2","6","4","9","2","3","3","_","1","7","1","6","2","7","9","1","2","7","0","6","7",".","g","i","f"].join("");
+</script>
+<script language="javascript" type="text/javascript">
+<!--
+LITHIUM.ScriptLoader.ready(['common', 'body', 'angularjs', 'angularjsModules'], function () {
+LITHIUM.AngularSupport.setOptions({
+  "useCsp" : true,
+  "useNg2" : false,
+  "coreModuleDeps" : [
+    "li.directives.common.slide-menu",
+    "li.directives.community.navigation",
+    "li.directives.messages.message-image",
+    "li.directives.common.non-bindable"
+  ],
+  "debugEnabled" : false
+});
+LITHIUM.AngularSupport.initGlobal(angular);LITHIUM.AngularSupport.init();LITHIUM.Globals.restoreGlobals(['define', '$', 'jQuery', 'angular']);LITHIUM.Sandbox.restore();
+LITHIUM.jQuery.fn.cssData.defaults = {"dataPrefix":"lia-js-data","pairDelimeter":"-","prefixDelimeter":"-"};
+      document.title = `How to configure Inter-VDOM links - Fortinet Community`;
+      document.querySelectorAll('meta[property="og:title"]').forEach(function(meta) {
+          meta.content = `How to configure Inter-VDOM links`;
+      });
+      document.querySelectorAll('meta[property="og:description"]').forEach(function(meta) {
+          meta.content = `how to configure Inter-VDOM links.Scope Solution Refer to the video via the following link:   https://www.youtube.com/watch?v&amp;#61;mfJSk9OSpMc`;
+      });
+
+LITHIUM.CommunityJsonObject.User.policies['forums.action.message-view.batch-messages.allow'] = false;
+LITHIUM.Form.resetFieldForFocusFound();
+;(function($) {
+$('.custom-community-header-navigation-v2 .has-children').hover(
+    function () {
+        $(".has-children.open:not($this)").removeClass("open");
+        $(this).addClass("open");
+    },
+    function () {
+        $(this).removeClass("open");
+    }
+);
+})(LITHIUM.jQuery);
+
+LITHIUM.DropDownMenu({"userMessagesFeedOptionsClass":"div.user-messages-feed-options-menu a.lia-js-menu-opener","menuOffsetContainer":".lia-menu-offset-container","hoverLeaveEvent":"LITHIUM:hoverLeave","mouseoverElementSelector":".lia-js-mouseover-menu","userMessagesFeedOptionsAriaLabel":"Show contributions of the user, selected option is Options. You may choose another option from the dropdown menu.","disabledLink":"lia-link-disabled","menuOpenCssClass":"dropdownHover","menuElementSelector":".lia-menu-navigation-wrapper","dialogSelector":".lia-panel-dialog-trigger","messageOptions":"lia-component-message-view-widget-action-menu","menuBarComponent":"lia-component-menu-bar","closeMenuEvent":"LITHIUM:closeMenu","menuOpenedEvent":"LITHIUM:menuOpened","pageOptions":"lia-component-community-widget-page-options","clickElementSelector":".lia-js-click-menu","menuItemsSelector":".lia-menu-dropdown-items","menuClosedEvent":"LITHIUM:menuClosed"});
+LITHIUM.DropDownMenuVisibilityHandler({"selectors":{"menuSelector":"#actionMenuDropDown","menuItemsSelector":".lia-menu-dropdown-items"}});
+(function($) {
+    common = {
+        profileCard: function(){
+            const userApiUrl = "/plugins/custom/fortinetemea/fortinetemea/profilehovercard?tid=-1594131710139730291&user_id=";
+            if($('.hover-card-container').length<1){
+                $('body').append('<div class="hover-card-container"></div>');
+            }
+            let cardWrapper = $('.hover-card-container');
+            let thisUserID = '';
+            let cardTimer;
+            $(document).on({
+                mouseenter: function() {
+                    let thisEl = $(this);
+                    cardTimer = setTimeout(function(){
+                        let docWidth = $(document).width();
+                        let rightSide = false;
+                        let userLink = thisEl.attr('href'); 
+                        // if($('.ViewProfilePage').length && $('img.lia-user-avatar-profile',thisEl).length){
+                        //     userLink = document.location.href;	
+                        // } else 
+                        if(userLink=='#'){
+                            return false;
+                        }
+                        let thisLen = (userLink).split('/');
+                        thisUserID = (thisLen)[thisLen.length-1];
+                        let thisCard = $('.profileCard[data-user='+thisUserID+']',cardWrapper);
+
+                        let thisElLeftOffset = Math.round(thisEl.offset().left+(thisEl.width()));
+                        let thisElTopOffset = Math.round(thisEl.offset().top+(thisEl.height()/2)-92);
+                        if((thisElLeftOffset+289)>=docWidth){
+                            //hover card is too far to the right of the screen
+                            thisElLeftOffset = Math.round(thisEl.offset().left-289);
+                            rightSide = true;
+                        }
+
+                        if(thisCard.length && $('.profileCard[data-user='+thisUserID+'] .preloader',cardWrapper).length<1){					
+                            $('.profileCard',cardWrapper).hide();
+                            rightSide?thisCard.addClass('rightArrow'):thisCard.removeClass('rightArrow');
+                            thisCard.delay(500).css({'top':thisElTopOffset,'left':thisElLeftOffset}).stop().show();
+                        } else {
+                            let ajaxReturn = '';
+
+                            //just in case
+                            thisCard.remove();							
+
+                            //hover card wrapper markup
+                            let rightArrowClass = rightSide?'rightArrow':'';
+                            let profileCardHtml = '<div class="profileCard '+rightArrowClass+'" style="display:block;top:'+thisElTopOffset+'px;left:'+thisElLeftOffset+'px;" data-user="'+thisUserID+'"><div class="hover_card"><img src="https://community.fortinet.com/html/@EAC5C7AAEBD010A1616E9EC015CB7346/assets/preloader.gif" class="preloader" style="margin:80px auto;display:block;" /></div></div>';							
+                            $.when(
+                                //get the background
+                                $.ajax({
+                                    type: 'GET',
+                                    url: userApiUrl+thisUserID,
+                                    dataType: 'html',
+                                    success: function(data) {
+                                        $('.profileCard',cardWrapper).hide();
+                                        ajaxReturn = data;
+                                    }
+                                })
+                            )
+                            .done(function(){
+                                cardWrapper.append(profileCardHtml);							
+                                $('.profileCard[data-user='+thisUserID+']',cardWrapper).eq(0).empty().html(ajaxReturn);
+                                if($('.profileCard[data-user='+thisUserID+'] .preloader',cardWrapper).length){
+                                    $('.profileCard[data-user='+thisUserID+'] .preloader',cardWrapper).parents('div.profileCard').remove();
+                                }
+                            })
+                            .fail(function(){
+                                //uh oh - bail out!
+                                $('.profileCard',cardWrapper).hide();
+                            });
+                        }
+                    },400);
+                }, 
+                mouseleave: function() {
+                    clearTimeout(cardTimer);
+                    if($('.profileCard[data-user='+thisUserID+']',cardWrapper).length){
+                        $('.profileCard[data-user='+thisUserID+']',cardWrapper).delay(500).fadeOut('fast');
+                    }
+                }
+            }, 'a[href*="/t5/user/viewprofilepage/user-id/"]:not(.UserNavigation .UserAvatar,.hover_card a)');
+        }
+    }
+    $(document).ready(function(){
+        common.profileCard();
+    });
+})(window.jQuery);
+
+LITHIUM.InformationBox({"updateFeedbackEvent":"LITHIUM:updateAjaxFeedback","componentSelector":"#pageInformation","feedbackSelector":".InfoMessage"});
+LITHIUM.InformationBox({"updateFeedbackEvent":"LITHIUM:updateAjaxFeedback","componentSelector":"#informationbox","feedbackSelector":".InfoMessage"});
+LITHIUM.InformationBox({"updateFeedbackEvent":"LITHIUM:updateAjaxFeedback","componentSelector":"#informationbox_0","feedbackSelector":".InfoMessage"});
+LITHIUM.InformationBox({"updateFeedbackEvent":"LITHIUM:updateAjaxFeedback","componentSelector":"#informationbox_1","feedbackSelector":".InfoMessage"});
+LITHIUM.CustomEvent('.lia-custom-event', 'click');
+LITHIUM.MessageBodyDisplay('#bodyDisplay', '.lia-truncated-body-container', '#viewMoreLink', '.lia-full-body-container' );
+LITHIUM.Link({"linkSelector":"a.lia-link-ticket-post-action"});
+LITHIUM.AjaxSupport.defaultAjaxFeedbackHtml = "<div class=\"lia-inline-ajax-feedback lia-component-common-widget-ajax-feedback\">\n\t\t\t<div class=\"AjaxFeedback\" id=\"ajaxFeedback_75acb093981acb\"><\/div>\n\t\t\t\n\t\n\n\t\n\n\t\t<\/div>";
+LITHIUM.AjaxSupport.defaultAjaxErrorHtml = "<span id=\"feedback-errorfeedback_75acb093b01f19\"> <\/span>\n\n\t\n\t\t<div class=\"InfoMessage lia-panel-feedback-inline-alert lia-component-common-widget-feedback\" id=\"feedback_75acb093b01f19\">\n\t\t\t<div role=\"alert\" class=\"lia-text\">\n\t\t\t\t\n\n\t\t\t\t\n\t\t\t\t\t<p ng-non-bindable=\"\" tabindex=\"0\">\n\t\t\t\t\t\tSorry, unable to complete the action you requested.\n\t\t\t\t\t<\/p>\n\t\t\t\t\n\n\t\t\t\t\n\n\t\t\t\t\n\n\t\t\t\t\n\t\t\t<\/div>\n\n\t\t\t\n\t\t<\/div>";
+LITHIUM.AjaxSupport.fromLink('#kudoEntity', 'kudoEntity', '#ajaxfeedback', 'LITHIUM:ajaxError', {}, 'gYEZpOMjiyyY2KQ4L_MHOJ9HKxfD6q9C3IUwwRdtV5Y.', 'ajax');
+LITHIUM.AjaxSupport.ComponentEvents.set({
+  "eventActions" : [
+    {
+      "event" : "kudoEntity",
+      "actions" : [
+        {
+          "context" : "envParam:entity",
+          "action" : "rerender"
+        }
+      ]
+    }
+  ],
+  "componentId" : "kudos.widget.button",
+  "initiatorBinding" : true,
+  "selector" : "#kudosButtonV2",
+  "parameters" : {
+    "displayStyle" : "horizontal",
+    "disallowZeroCount" : "false",
+    "revokeMode" : "true",
+    "kudosable" : "true",
+    "showCountOnly" : "false",
+    "disableKudosForAnonUser" : "false",
+    "useCountToKudo" : "false",
+    "entity" : "89",
+    "linkDisabled" : "false"
+  },
+  "initiatorDataMatcher" : "data-lia-kudos-id"
+});
+LITHIUM.AjaxFeedback(".lia-inline-ajax-feedback", "LITHIUM:hideAjaxFeedback", ".lia-inline-ajax-feedback-persist");
+LITHIUM.AjaxSupport({"ajaxOptionsParam":{"event":"LITHIUM:lightboxRenderComponent","parameters":{"componentParams":"{\n  \"surveyType\" : {\n    \"value\" : \"communityexperience\",\n    \"class\" : \"java.lang.String\"\n  },\n  \"surveyId\" : {\n    \"value\" : \"3\",\n    \"class\" : \"java.lang.Integer\"\n  },\n  \"triggerSelector\" : {\n    \"value\" : \"#valueSurveyLauncher\",\n    \"class\" : \"lithium.util.css.CssSelector\"\n  }\n}","componentId":"valuesurveys.widget.survey-prompt-dialog"},"trackableEvent":false},"tokenId":"ajax","elementSelector":"#valueSurveyLauncher","action":"lightboxRenderComponent","feedbackSelector":false,"url":"https://community.fortinet.com/t5/tkb/v2_4/articlepage.liabase.basebody.valuesurveylauncher.valuesurveylauncher:lightboxrendercomponent?t:ac=blog-id/TKB20/article-id/2","ajaxErrorEventName":"LITHIUM:ajaxError","token":"xTFKu-1Ubx43Tnk-DE13a_-gaYEVzcQwQxhTNR8XPSU."});
+LITHIUM.Dialog.options['-1641838492'] = {"contentContext":"valuesurveys.widget.survey-prompt-dialog","dialogOptions":{"minHeight":399,"draggable":false,"maxHeight":800,"resizable":false,"autoOpen":false,"width":610,"minWidth":610,"dialogClass":"lia-content lia-panel-dialog lia-panel-dialog-modal-simple lia-panel-dialog-modal-valuesurvey","position":["center","center"],"modal":true,"maxWidth":610,"ariaLabel":"Feedback for community"},"contentType":"ajax"};
+LITHIUM.Dialog({
+  "closeImageIconURL" : "https://community.fortinet.com/skins/images/9785A68B7D5CE73DE3BA83ACDE05C7C2/theme_hermes/images/button_dialog_close.svg",
+  "activecastFullscreen" : false,
+  "dialogTitleHeadingLevel" : "2",
+  "dropdownMenuSelector" : ".lia-menu-navigation-wrapper",
+  "accessibility" : true,
+  "triggerSelector" : ".lia-panel-dialog-trigger-event-click",
+  "ajaxEvent" : "LITHIUM:lightboxRenderComponent",
+  "focusOnDialogTriggerWhenClosed" : false,
+  "closeEvent" : "LITHIUM:lightboxCloseEvent",
+  "defaultAriaLabel" : "",
+  "dropdownMenuOpenerSelector" : ".lia-js-menu-opener",
+  "buttonDialogCloseAlt" : "Close",
+  "dialogContentCssClass" : "lia-panel-dialog-content",
+  "triggerEvent" : "click",
+  "dialogKey" : "dialogKey"
+});
+LITHIUM.PartialRenderProxy({"limuirsComponentRenderedEvent":"LITHIUM:limuirsComponentRendered","relayEvent":"LITHIUM:partialRenderProxyRelay","listenerEvent":"LITHIUM:partialRenderProxy"});
+LITHIUM.AjaxSupport({"ajaxOptionsParam":{"event":"LITHIUM:partialRenderProxyRelay","parameters":{"javascript.ignore_combine_and_minify":"true"}},"tokenId":"ajax","elementSelector":document,"action":"partialRenderProxyRelay","feedbackSelector":false,"url":"https://community.fortinet.com/t5/tkb/v2_4/articlepage.liabase.basebody.partialrenderproxy:partialrenderproxyrelay?t:ac=blog-id/TKB20/article-id/2","ajaxErrorEventName":"LITHIUM:ajaxError","token":"Nl1s_FFGHuwB3AWlWARPANTePF9l5-GjvSJOQ7QWusQ."});
+LITHIUM.Auth.API_URL = "/t5/util/authcheckpage";
+LITHIUM.Auth.LOGIN_URL_TMPL = "/tpykb84852/auth/saml/doauth/post?referer=https%3A%2F%2FREPLACE_TEXT";
+LITHIUM.Auth.KEEP_ALIVE_URL = "/t5/status/blankpage?keepalive";
+LITHIUM.Auth.KEEP_ALIVE_TIME = 300000;
+LITHIUM.Auth.CHECK_SESSION_TOKEN = 'loBEw5P5oEGqqRSZbvcRTnkZyhqSCGC2XRKza93QTTQ.';
+LITHIUM.AjaxSupport.useTickets = false;
+LITHIUM.Cache.CustomEvent.set([{"elementId":"link_5","stopTriggerEvent":false,"fireEvent":"LITHIUM:selectMessage","triggerEvent":"click","eventContext":{"message":89}}]);
+LITHIUM.Loader.runJsAttached();
+
+});
+// -->
+</script></body>
+</html>

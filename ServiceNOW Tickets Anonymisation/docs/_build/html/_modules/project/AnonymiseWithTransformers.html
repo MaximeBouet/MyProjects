@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>project.AnonymiseWithTransformers &#8212; Anonymisation Project 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for project.AnonymiseWithTransformers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;This module provides a class implementing EntityRecognizer for Transformers pipeline.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">from</span> <span class="nn">presidio_anonymizer</span> <span class="kn">import</span> <span class="n">AnonymizerEngine</span>
+<span class="kn">from</span> <span class="nn">presidio_analyzer</span> <span class="kn">import</span> <span class="n">AnalyzerEngine</span><span class="p">,</span> <span class="n">EntityRecognizer</span><span class="p">,</span> <span class="n">RecognizerResult</span>
+
+<span class="kn">from</span> <span class="nn">presidio_analyzer.nlp_engine</span> <span class="kn">import</span> <span class="n">NlpArtifacts</span><span class="p">,</span><span class="n">NlpEngineProvider</span>
+
+
+<span class="n">DEFAULT_ANOYNM_ENTITIES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;[CREDIT_CARD]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[CRYPTO]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[DATE_TIME]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[EMAIL_ADDRESS]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[IBAN_CODE]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[IP_ADDRESS]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[NRP]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[LOCATION]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[PERSON]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[PHONE_NUMBER]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[MEDICAL_LICENSE]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[URL]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[NUMBER]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;[Organization]&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<div class="viewcode-block" id="TransformerRecognizer">
+<a class="viewcode-back" href="../../project.html#project.AnonymiseWithTransformers.TransformerRecognizer">[docs]</a>
+<span class="k">class</span> <span class="nc">TransformerRecognizer</span><span class="p">(</span><span class="n">EntityRecognizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class implementing EntityRecognizer for Transformers pipeline.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model_id_or_path (str): The model id or path to the transformers model.</span>
+<span class="sd">        mapping_labels (dict): A dictionary mapping transformers labels to presidio labels.</span>
+<span class="sd">        aggregation_strategy (str, optional): The aggregation strategy to use in the transformers pipeline. Defaults to &quot;simple&quot;.</span>
+<span class="sd">        supported_language (str, optional): The language supported by the class. Defaults to &quot;fr&quot;.</span>
+<span class="sd">        ignore_labels (list, optional): A list of labels to ignore in the transformers pipeline. Defaults to [&quot;O&quot;, &quot;MISC&quot;].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">model_id_or_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">mapping_labels</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">aggregation_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+        <span class="n">supported_language</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;fr&quot;</span><span class="p">,</span>
+        <span class="n">ignore_labels</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;MISC&quot;</span><span class="p">],</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the TransformerRecognizer class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model_id_or_path (str): The model id or path to the transformers model.</span>
+<span class="sd">            mapping_labels (dict): A dictionary mapping transformers labels to presidio labels.</span>
+<span class="sd">            aggregation_strategy (str, optional): The aggregation strategy to use in the transformers pipeline. Defaults to &quot;simple&quot;.</span>
+<span class="sd">            supported_language (str, optional): The language supported by the class. Defaults to &quot;fr&quot;.</span>
+<span class="sd">            ignore_labels (list, optional): A list of labels to ignore in the transformers pipeline. Defaults to [&quot;O&quot;, &quot;MISC&quot;].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Initializes the transformers pipeline for the given model or path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+            <span class="s2">&quot;token-classification&quot;</span><span class="p">,</span>  <span class="c1"># The transformers pipeline type</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model_id_or_path</span><span class="p">,</span>  <span class="c1"># The transformers model id or path</span>
+            <span class="n">aggregation_strategy</span><span class="o">=</span><span class="n">aggregation_strategy</span><span class="p">,</span>  <span class="c1"># The aggregation strategy to use</span>
+            <span class="n">ignore_labels</span><span class="o">=</span><span class="n">ignore_labels</span><span class="p">,</span>  <span class="c1"># The labels to ignore in the pipeline</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Maps transformers labels to presidio labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label2presidio</span> <span class="o">=</span> <span class="n">mapping_labels</span>
+
+        <span class="c1"># Passes entities from the model into the parent class</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">supported_entities</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label2presidio</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>  <span class="c1"># The supported entities by the class</span>
+            <span class="n">supported_language</span><span class="o">=</span><span class="n">supported_language</span><span class="p">,</span>  <span class="c1"># The supported language by the class</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="TransformerRecognizer.load">
+<a class="viewcode-back" href="../../project.html#project.AnonymiseWithTransformers.TransformerRecognizer.load">[docs]</a>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        No loading is required.</span>
+
+<span class="sd">        This method is part of the EntityRecognizer interface and is called</span>
+<span class="sd">        to load the model or perform any necessary setup. Since the Transformer</span>
+<span class="sd">        model is loaded during initialization, there is no need to load it again</span>
+<span class="sd">        in the load method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="TransformerRecognizer.analyze">
+<a class="viewcode-back" href="../../project.html#project.AnonymiseWithTransformers.TransformerRecognizer.analyze">[docs]</a>
+    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">entities</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nlp_artifacts</span><span class="p">:</span> <span class="n">NlpArtifacts</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract entities using Transformers pipeline.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text (str): The text to analyze</span>
+<span class="sd">            entities (list, optional): The list of entities to extract. Defaults to None.</span>
+<span class="sd">            nlp_artifacts (NlpArtifacts, optional): The nlp artifacts. Defaults to None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: A list of RecognizerResult objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Predict entities using the transformers pipeline</span>
+        <span class="n">predicted_entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="c1"># Iterate over the predicted entities</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">predicted_entities</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">predicted_entities</span><span class="p">:</span>
+                <span class="c1"># Check if the predicted entity is in the list of entities to extract</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;entity_group&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label2presidio</span><span class="p">):</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># Convert the predicted entity to a presidio entity</span>
+                <span class="n">converted_entity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label2presidio</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="s2">&quot;entity_group&quot;</span><span class="p">]]</span>
+
+                <span class="c1"># Check if the converted entity is in the list of entities to extract or if no entities are specified</span>
+                <span class="k">if</span> <span class="n">converted_entity</span> <span class="ow">in</span> <span class="n">entities</span> <span class="ow">or</span> <span class="n">entities</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># Create a RecognizerResult object for the extracted entity</span>
+                    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">RecognizerResult</span><span class="p">(</span>
+                            <span class="n">entity_type</span><span class="o">=</span><span class="n">converted_entity</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">e</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="n">e</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">],</span> <span class="n">score</span><span class="o">=</span><span class="n">e</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+        <span class="c1"># Return the list of extracted entities</span>
+        <span class="k">return</span> <span class="n">results</span></div>
+</div>
+
+
+<div class="viewcode-block" id="anonymise_with_transformer">
+<a class="viewcode-back" href="../../project.html#project.AnonymiseWithTransformers.anonymise_with_transformer">[docs]</a>
+<span class="k">def</span> <span class="nf">anonymise_with_transformer</span><span class="p">(</span><span class="n">new_text_fr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Anonymise the given text using transformer pipeline.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        new_text_fr (str): The text to anonymise.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The anonymised text.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Mapping of transformer labels to presidio entity types</span>
+    <span class="n">mapping_labels</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;PER&quot;</span><span class="p">:</span> <span class="s2">&quot;[PERSON]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;LOC&quot;</span><span class="p">:</span> <span class="s2">&quot;[LOCATION]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ORG&quot;</span><span class="p">:</span> <span class="s2">&quot;[ORGANIZATION]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PHONE_NUMBER&quot;</span><span class="p">:</span> <span class="s2">&quot;[PHONE_NUMBER]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;EMAIL_ADDRESS&quot;</span><span class="p">:</span> <span class="s2">&quot;[EMAIL_ADDRESS]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CREDIT_CARD&quot;</span><span class="p">:</span> <span class="s2">&quot;[CREDIT_CARD]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;IBAN_CODE&quot;</span><span class="p">:</span> <span class="s2">&quot;[IBAN_CODE]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;IP_ADDRESS&quot;</span><span class="p">:</span> <span class="s2">&quot;[IP_ADDRESS]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;URL&quot;</span><span class="p">:</span> <span class="s2">&quot;[URL]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DATE_TIME&quot;</span><span class="p">:</span> <span class="s2">&quot;[DATE_TIME]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;NRP&quot;</span><span class="p">:</span> <span class="s2">&quot;[NRP]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;MEDICAL_LICENSE&quot;</span><span class="p">:</span> <span class="s2">&quot;[MEDICAL_LICENSE]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CRYPTO&quot;</span><span class="p">:</span> <span class="s2">&quot;[CRYPTO]&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># NLP configuration</span>
+    <span class="n">configuration</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;nlp_engine_name&quot;</span><span class="p">:</span> <span class="s2">&quot;spacy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;models&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;lang_code&quot;</span><span class="p">:</span> <span class="s1">&#39;fr&#39;</span><span class="p">,</span> <span class="s2">&quot;model_name&quot;</span><span class="p">:</span> <span class="s2">&quot;fr_core_news_lg&quot;</span><span class="p">}],</span>
+    <span class="p">}</span>
+
+    <span class="c1"># List of entities to keep</span>
+    <span class="n">to_keep</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lang</span> <span class="o">=</span> <span class="s1">&#39;fr&#39;</span>
+
+    <span class="c1"># Create NLP engine provider and engine</span>
+    <span class="n">provider</span> <span class="o">=</span> <span class="n">NlpEngineProvider</span><span class="p">(</span><span class="n">nlp_configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span>
+    <span class="n">nlp_engine</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">create_engine</span><span class="p">()</span>
+
+    <span class="c1"># Create analyzer engine and add transformer recognizer</span>
+    <span class="n">analyzer</span> <span class="o">=</span> <span class="n">AnalyzerEngine</span><span class="p">(</span>
+        <span class="n">nlp_engine</span><span class="o">=</span><span class="n">nlp_engine</span><span class="p">,</span>
+        <span class="n">supported_languages</span><span class="o">=</span><span class="s2">&quot;fr&quot;</span>
+    <span class="p">)</span>
+    <span class="n">transformers_recognizer</span> <span class="o">=</span> <span class="n">TransformerRecognizer</span><span class="p">(</span>
+        <span class="s2">&quot;Jean-Baptiste/camembert-ner&quot;</span><span class="p">,</span> <span class="n">mapping_labels</span>
+    <span class="p">)</span>
+    <span class="n">analyzer</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">add_recognizer</span><span class="p">(</span><span class="n">transformers_recognizer</span><span class="p">)</span>
+
+    <span class="c1"># Analyze text and anonymise it</span>
+    <span class="n">analyzer_results</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span>
+        <span class="n">text</span><span class="o">=</span><span class="n">new_text_fr</span><span class="p">,</span>
+        <span class="n">entities</span><span class="o">=</span><span class="n">DEFAULT_ANOYNM_ENTITIES</span><span class="p">,</span>
+        <span class="n">allow_list</span><span class="o">=</span><span class="n">to_keep</span><span class="p">,</span>
+        <span class="n">language</span><span class="o">=</span><span class="n">lang</span>
+    <span class="p">)</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">AnonymizerEngine</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">anonymize</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">new_text_fr</span><span class="p">,</span> <span class="n">analyzer_results</span><span class="o">=</span><span class="n">analyzer_results</span><span class="p">)</span>
+
+    <span class="c1"># Restructure anonymizer results</span>
+    <span class="n">anonymization_results</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;anonymized&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+        <span class="s2">&quot;found&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">entity</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">analyzer_results</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Replace entities with anonymised text in the original text</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;word&#39;</span><span class="p">:</span> <span class="n">new_text_fr</span><span class="p">[</span><span class="n">obj</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]:</span><span class="n">obj</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]],</span>
+            <span class="s1">&#39;entity_type&#39;</span><span class="p">:</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;entity_type&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">anonymization_results</span><span class="p">[</span><span class="s1">&#39;found&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="n">new_text_fr</span> <span class="o">=</span> <span class="n">new_text_fr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="n">new_text_fr</span><span class="p">[</span><span class="n">word</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]:</span><span class="n">word</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]],</span>
+            <span class="n">word</span><span class="p">[</span><span class="s1">&#39;entity_type&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_text_fr</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Anonymisation Project</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">AnonymisationProject</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Maxime BOuet.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
