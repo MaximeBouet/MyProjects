@@ -1,0 +1,21 @@
+python3 pacman_AIC.py
+python3 pacman_AIC.py --layout testMaze --pacman GoWestAgent
+python3 pacman_AIC.py --layout tinyMaze --pacman GoWestAgent
+python3 pacman_AIC.py -h
+python3 pacman_AIC.py -l tinyMaze -p SearchAgent -a fn=tinyMazeSearch
+python3 pacman_AIC.py -l tinyMaze -p SearchAgent
+python3 pacman_AIC.py -l mediumMaze -p SearchAgent
+python3 pacman_AIC.py -l bigMaze -z .5 -p SearchAgent
+python3 pacman_AIC.py -l mediumMaze -p SearchAgent -a fn=bfs
+python3 pacman_AIC.py -l bigMaze -p SearchAgent -a fn=bfs -z .5
+python3 eightpuzzle.py
+python3 pacman_AIC.py -l mediumMaze -p SearchAgent -a fn=ucs
+python3 pacman_AIC.py -l mediumDottedMaze -p StayEastSearchAgent
+python3 pacman_AIC.py -l mediumScaryMaze -p StayWestSearchAgent
+python3 pacman_AIC.py -l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic 
+python3 pacman_AIC.py -l tinyCorners -p SearchAgent -a fn=bfs,prob=CornersProblem
+python3 pacman_AIC.py -l mediumCorners -p SearchAgent -a fn=bfs,prob=CornersProblem
+python3 pacman_AIC.py -l mediumCorners -p AStarCornersAgent -z 0.5
+python3 pacman_AIC.py -l testSearch -p AStarFoodSearchAgent
+python3 pacman_AIC.py -l trickySearch -p AStarFoodSearchAgent
+python3 pacman_AIC.py -l bigSearch -p ClosestDotSearchAgent -z .5 

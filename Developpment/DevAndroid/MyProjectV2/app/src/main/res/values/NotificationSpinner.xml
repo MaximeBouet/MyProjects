@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="notification_array">
+        <item>@string/Off</item>
+        <item>@string/oneDay</item>
+        <item>@string/twoDays</item>
+        <item>@string/oneWeek</item>
+    </string-array>
+</resources>

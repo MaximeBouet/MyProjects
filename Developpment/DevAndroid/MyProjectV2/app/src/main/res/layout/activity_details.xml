@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.Details">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_dark_background"
+        android:minHeight="?actionBarSize"
+        android:theme="?actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:contentDescription="@string/todo"
+            android:onClick="goBack"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:srcCompat="?attr/actionModeCloseDrawable"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="12dp" />
+
+        <TextView
+            android:id="@+id/DETAILS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/txtTitleDetails"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            tools:layout_editor_absoluteX="229dp"
+            tools:layout_editor_absoluteY="5dp" />
+
+        <TextView
+            android:id="@+id/txtStateDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_gravity="end"
+            android:text="@string/State"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/txtDescriptionDetails"
+        android:layout_width="343dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="@string/Description"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNameDetails"
+        android:layout_width="170dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="32dp"
+        android:text="@string/Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionDetails" />
+
+    <TextView
+        android:id="@+id/txtDateDetails"
+        android:layout_width="87dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="116dp"
+        android:text="@string/Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionDetails" />
+
+    <TextView
+        android:id="@+id/txtTimeDetails"
+        android:layout_width="72dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionDetails" />
+
+    <TextView
+        android:id="@+id/txtAddressDetails"
+        android:layout_width="218dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Adress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNameDetails" />
+
+    <TextView
+        android:id="@+id/txtPhoneNumberDetails"
+        android:layout_width="100dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/PhoneNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddressDetails" />
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:text="@string/btnEdit"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCall" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="38dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:text="@string/btnDelete"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhoneNumberDetails" />
+
+
+    <Button
+        android:id="@+id/btnMaps"
+        android:layout_width="130dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="28dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:text="@string/maps"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTimeDetails"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnCall"
+        android:layout_width="130dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="28dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:text="@string/call"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMaps"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="37dp"
+        android:text="@string/share"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/cardview_dark_background"
+        app:layout_constraintEnd_toStartOf="@+id/btnEdit"
+        app:layout_constraintStart_toEndOf="@+id/btnDelete"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddressDetails" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

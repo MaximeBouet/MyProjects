@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name">MyProjectV2</string>
+    <string name="action_delete">Delete all appointments</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Appointments list</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="todo">TODO</string>
+
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+
+    <!-- Strings used on the Main Activity-->
+    <string name="Description" translatable="false">Description</string>
+    <string name="Date" translatable="false">Date</string>
+    <string name="Time">Time</string>
+    <string name="Name">Name</string>
+    <string name="Adress">Address</string>
+    <string name="PhoneNumber">PhoneNumber</string>
+    <string name="State">State</string>
+    <string name="See">See</string>
+    <string name="EmptyRdvList">No appointment scheduled</string>
+
+    <!-- Strings used on AddRdv Activity-->
+    <string name="AddDescription">Write the description of this appointment :</string>
+    <string name="etDescription">Enter a description</string>
+    <string name="AddDate">Select the date :</string>
+    <string name="AddTime">Select the time :</string>
+    <string name="etDate" translatable="false">Date</string>
+    <string name="etTime">Time</string>
+    <string name="AddPerson">Write name of the contact :</string>
+    <string name="etName">Enter a Name/contact</string>
+    <string name="AddAddress">Write the address of the appointment(optional) :</string>
+    <string name="etAddress">Enter an Address</string>
+    <string name="AddPhoneNumber">Write a phone number(optional) :</string>
+    <string name="etPhoneNumber">Enter a PhoneNumber</string>
+    <string name="AddState">State :</string>
+    <string name="etState">State</string>
+    <string name="contact">Contact list</string>
+    <string name="stateToday">it\'s today</string>
+    <string name="stateNotToday">not today</string>
+    <string name="statePassed">passed</string>
+
+
+    <!-- Strings used on DetailsRdv Activity -->
+    <string name="btnSave">Save</string>
+    <string name="btnEdit">Edit</string>
+    <string name="btnDelete">Delete</string>
+    <string name="btnBack">Back</string>
+    <string name="txtTitleDetails">DETAILS</string>
+    <string name="maps">Open Maps</string>
+    <string name="call">Call</string>
+    <string name="share">Share</string>
+
+    <!-- Strings used on Contact Activity -->
+    <string name="chooseContact">Choose a contact</string>
+    <string name="txtcontactName">Contact name</string>
+    <string name="txtContactNumber">Contact number</string>
+    <string name="emptyContactList">Your contact list is empty</string>
+
+    <!-- Strings used on Settings Activity -->
+    <string name="settings">Settings</string>
+    <string name="notification" translatable="false">Notifications :</string>
+    <string name="color">Background color :</string>
+    <string name="music">Background music :</string>
+    <string name="checkYes">Yes</string>
+    <string name="checkNo">No</string>
+    <string name="Off">Off</string>
+    <string name="oneDay">1 day before</string>
+    <string name="twoDays">2 days before</string>
+    <string name="oneWeek">1 week before</string>
+    <string name="notif1">1 day.</string>
+    <string name="notif2">2 days.</string>
+    <string name="notif3">1 week.</string>
+    <string name="notifTitle" translatable="false">RDV NOTIFICATION !</string>
+    <string name="notifDesc">You have an appointment in </string>
+    <string name="Base_color">Base_color</string>
+    <string name="Brown">Brown</string>
+    <string name="Magenta" translatable="false">Magenta</string>
+    <string name="Dark_Blue">Dark_Blue</string>
+    <string name="Cyan" translatable="false">Cyan</string>
+    <string name="Green">Green</string>
+    <string name="Red">Red</string>
+    <string name="Orange" translatable="false">Orange</string>
+    <string name="Yellow">Yellow</string>
+</resources>
